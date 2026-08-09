@@ -1,0 +1,306 @@
+board_layout:
+  version: '2.0'
+  page:
+    width_mm: 297
+    height_mm: 210
+    safe_margin_mm: 10
+  ports:
+  - name: Nordhamn
+    x_mm: 34
+    y_mm: 48
+    label_dx_mm: 0
+    label_dy_mm: -14
+  - name: Klippvik
+    x_mm: 85
+    y_mm: 34
+    label_dx_mm: 0
+    label_dy_mm: -14
+  - name: Stormö
+    x_mm: 163
+    y_mm: 54
+    label_dx_mm: 20
+    label_dy_mm: 0
+  - name: Vitnäs
+    x_mm: 236
+    y_mm: 51
+    label_dx_mm: 0
+    label_dy_mm: -14
+  - name: Västerhamn
+    x_mm: 39
+    y_mm: 91
+    label_dx_mm: -14.0
+    label_dy_mm: 10.0
+  - name: Saltvik
+    x_mm: 49
+    y_mm: 144
+    label_dx_mm: -20
+    label_dy_mm: 0
+  - name: Kopparhamn
+    x_mm: 103
+    y_mm: 75
+    label_dx_mm: 15.0
+    label_dy_mm: -15.0
+  - name: Skärudden
+    x_mm: 91
+    y_mm: 120
+    label_dx_mm: 0
+    label_dy_mm: 18
+  - name: Österhamn
+    x_mm: 240
+    y_mm: 183
+    label_dx_mm: 0
+    label_dy_mm: 14
+  - name: Tallhamn
+    x_mm: 205
+    y_mm: 90
+    label_dx_mm: 22.0
+    label_dy_mm: 0.0
+  - name: Solvik
+    x_mm: 206
+    y_mm: 150
+    label_dx_mm: 0
+    label_dy_mm: 18
+  - name: Glasö
+    x_mm: 248
+    y_mm: 131
+    label_dx_mm: 20
+    label_dy_mm: 0
+  - name: Söderhamn
+    x_mm: 172
+    y_mm: 168
+    label_dx_mm: -1
+    label_dy_mm: 10
+  - name: Sandvik
+    x_mm: 82
+    y_mm: 181
+    label_dx_mm: 0.0
+    label_dy_mm: 13.0
+  - name: Ängshamn
+    x_mm: 133
+    y_mm: 143
+    label_dx_mm: 0
+    label_dy_mm: 18
+  - name: Ekhult
+    x_mm: 169
+    y_mm: 118
+    label_dx_mm: 0
+    label_dy_mm: -14
+  routes:
+  - id: R01
+    curve_mm: 0
+    cost_t: 0.5
+    cost_normal_mm: 2.5
+    terrain: land
+  - id: R02
+    curve_mm: 0
+    cost_t: 0.5
+    cost_normal_mm: 2.5
+    terrain: river
+    waypoints_mm:
+    - - 18
+      - 64
+  - id: R03
+    curve_mm: -8
+    cost_t: 0.5
+    cost_normal_mm: -1
+    terrain: land
+  - id: R04
+    curve_mm: 0
+    cost_t: 0.5
+    cost_normal_mm: 2.5
+    terrain: land
+  - id: R05
+    curve_mm: -6
+    cost_t: 0.52
+    cost_normal_mm: 2.0
+    terrain: coastal_water
+  - id: R06
+    curve_mm: -12
+    cost_t: 0.52
+    cost_normal_mm: 2
+    terrain: water
+    waypoints_mm:
+    - - 163
+      - 34
+  - id: R07
+    curve_mm: 4
+    cost_t: 0.5
+    cost_normal_mm: -2.0
+    terrain: land
+  - id: R08
+    curve_mm: 13
+    cost_t: 0.48
+    cost_normal_mm: -2.5
+    terrain: river
+    waypoints_mm:
+    - - 174
+      - 69
+  - id: R09
+    curve_mm: 0
+    cost_t: 0.5
+    cost_normal_mm: 2.5
+    terrain: land
+  - id: R10
+    curve_mm: -9
+    cost_t: 0.56
+    cost_normal_mm: 1
+    terrain: land
+  - id: R11
+    curve_mm: 0
+    cost_t: 0.5
+    cost_normal_mm: 2.5
+    terrain: coastal_water
+  - id: R12
+    curve_mm: 0
+    cost_t: 0.5
+    cost_normal_mm: 2.5
+    terrain: land
+  - id: R13
+    curve_mm: 0
+    cost_t: 0.5
+    cost_normal_mm: 2.5
+    terrain: land
+  - id: R14
+    curve_mm: 0
+    cost_t: 0.52
+    cost_normal_mm: 2.5
+    terrain: coastal_water
+  - id: R15
+    curve_mm: -4
+    cost_t: 0.5
+    cost_normal_mm: 2.0
+    terrain: river
+    waypoints_mm:
+    - - 52
+      - 162
+  - id: R16
+    curve_mm: 0
+    cost_t: 0.5
+    cost_normal_mm: 2.5
+    terrain: land
+  - id: R17
+    curve_mm: 35.323
+    cost_t: 0.54
+    cost_normal_mm: 2.5
+    terrain: water
+  - id: R18
+    curve_mm: -5
+    cost_t: 0.5
+    cost_normal_mm: -2.0
+    terrain: water
+  - id: R19
+    curve_mm: 2
+    cost_t: 0.5
+    cost_normal_mm: -2.0
+    terrain: coastal_water
+  - id: R20
+    curve_mm: -7
+    cost_t: 0.52
+    cost_normal_mm: -1
+    terrain: coastal_water
+    waypoints_mm:
+    - - 122
+      - 116
+  - id: R21
+    curve_mm: 3
+    cost_t: 0.52
+    cost_normal_mm: -2.0
+    terrain: land
+  - id: R22
+    curve_mm: -2
+    cost_t: 0.5
+    cost_normal_mm: 2.0
+    terrain: river
+    waypoints_mm:
+    - - 149
+      - 126
+  - id: R23
+    curve_mm: 1
+    cost_t: 0.48
+    cost_normal_mm: -2.0
+    terrain: land
+  - id: R24
+    curve_mm: -3
+    cost_t: 0.5
+    cost_normal_mm: 2.0
+    terrain: land
+  - id: R25
+    curve_mm: 8
+    cost_t: 0.53
+    cost_normal_mm: 2.5
+    terrain: water
+    waypoints_mm:
+    - - 145
+      - 198
+  - id: R26
+    curve_mm: -1
+    cost_t: 0.5
+    cost_normal_mm: 2.0
+    terrain: river
+    waypoints_mm:
+    - - 165
+      - 140
+  - id: R27
+    curve_mm: 4
+    cost_t: 0.52
+    cost_normal_mm: 2.0
+    terrain: coastal_water
+    waypoints_mm:
+    - - 183
+      - 126
+  - id: R28
+    curve_mm: 10
+    cost_t: 0.5
+    cost_normal_mm: -1
+    terrain: water
+    waypoints_mm:
+    - - 202
+      - 188
+  - id: R29
+    curve_mm: 0
+    cost_t: 0.5
+    cost_normal_mm: 2.5
+    terrain: coastal_water
+  - id: R30
+    curve_mm: 0
+    cost_t: 0.5
+    cost_normal_mm: 2.5
+    terrain: land
+  - id: R31
+    curve_mm: 11
+    cost_t: 0.48
+    cost_normal_mm: 1
+    terrain: water
+    waypoints_mm:
+    - - 204
+      - 128
+  - id: R32
+    curve_mm: 0
+    cost_t: 0.5
+    cost_normal_mm: 2.5
+    terrain: coastal_water
+  - id: R33
+    curve_mm: 0
+    cost_t: 0.5
+    cost_normal_mm: 2.5
+    terrain: land
+  - id: R34
+    curve_mm: -8
+    cost_t: 0.52
+    cost_normal_mm: 1
+    terrain: water
+    waypoints_mm:
+    - - 255
+      - 165
+  route_marker_slots:
+    enabled: true
+    diameter_mm: 6.2
+    start_t: 0.28
+    end_t: 0.72
+    fill: '#FFFDF4'
+    fill_opacity: 0.82
+    stroke_width_mm: 0.55
+    show_cost_number: true
+    cost_number_mode: nearest_slot
+    cost_font_size_mm: 3.2
+    cost_font_weight: 700

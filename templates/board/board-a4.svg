@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="{{WIDTH}}mm" height="{{HEIGHT}}mm" viewBox="0 0 {{WIDTH}} {{HEIGHT}}">
+  <defs>{{DEFS}}</defs>
+  <g id="background">{{BACKGROUND}}</g>
+  <g id="terrain">{{TERRAIN}}</g>
+  <g id="decorations">{{DECORATIONS}}</g>
+  <g id="routes">{{CONNECTIONS}}</g>
+  <g id="costs">{{COSTS}}</g>
+  <g id="ports">{{PORTS}}</g>
+  <g id="labels">{{LABELS}}</g>
+  <g id="legend">{{LEGEND}}</g>
+  <g id="title">{{TITLE}}</g>
+  <g id="frame">{{FRAME}}</g>
+</svg>

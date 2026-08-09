@@ -1,0 +1,17 @@
+version: '1.1'
+source: assets/icons/source/trade-seals-generated-sheet-v1.1.png
+format: PNG RGBA
+icons:
+  blå:
+    file: assets/icons/trade-seals/blue-trade-seal.png
+    motif: kompassros och ankare
+  röd:
+    file: assets/icons/trade-seals/red-trade-seal.png
+    motif: handelsvåg och mynt
+  grön:
+    file: assets/icons/trade-seals/green-trade-seal.png
+    motif: ekblad och sädeskärve
+  lila:
+    file: assets/icons/trade-seals/purple-trade-seal.png
+    motif: krona och stjärnor
+fallback: vector accessibility symbols remain available in build script

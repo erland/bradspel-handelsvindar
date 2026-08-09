@@ -1,0 +1,185 @@
+terrain:
+  version: '0.30'
+  model: legacy_visual_support_only
+  description: Legacy visual support data. Route colors no longer imply land or water
+    terrain.
+  base: water
+  port_land_radius_mm: 9.5
+  land_corridor_width_mm: 15
+  water_channel_width_mm: 12
+  coastal_water_channel_width_mm: 9
+  river_bank_width_mm: 9
+  river_water_width_mm: 4.5
+  archipelago_island_radius_mm: 2.1
+  routes:
+  - id: R01
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R02
+    required_terrain: neutral
+    water_channel_width_mm: 4.5
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R03
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R04
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R05
+    required_terrain: neutral
+    water_channel_width_mm: 9
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R06
+    required_terrain: neutral
+    water_channel_width_mm: 12
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R07
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R08
+    required_terrain: neutral
+    water_channel_width_mm: 4.5
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R09
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R10
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R11
+    required_terrain: neutral
+    water_channel_width_mm: 9
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R12
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R13
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R14
+    required_terrain: neutral
+    water_channel_width_mm: 9
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R15
+    required_terrain: neutral
+    water_channel_width_mm: 4.5
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R16
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R17
+    required_terrain: neutral
+    water_channel_width_mm: 12
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R18
+    required_terrain: neutral
+    water_channel_width_mm: 12
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R19
+    required_terrain: neutral
+    water_channel_width_mm: 9
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R20
+    required_terrain: neutral
+    water_channel_width_mm: 9
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R21
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R22
+    required_terrain: neutral
+    water_channel_width_mm: 4.5
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R23
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R24
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R25
+    required_terrain: neutral
+    water_channel_width_mm: 12
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R26
+    required_terrain: neutral
+    water_channel_width_mm: 4.5
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R27
+    required_terrain: neutral
+    water_channel_width_mm: 9
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R28
+    required_terrain: neutral
+    water_channel_width_mm: 12
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R29
+    required_terrain: neutral
+    water_channel_width_mm: 9
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R30
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R31
+    required_terrain: neutral
+    water_channel_width_mm: 12
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R32
+    required_terrain: neutral
+    water_channel_width_mm: 9
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  - id: R33
+    required_terrain: neutral
+    water_channel_width_mm: 0
+    land_corridor_width_mm: 15
+    validation_threshold: 0.0
+  - id: R34
+    required_terrain: neutral
+    water_channel_width_mm: 12
+    land_corridor_width_mm: 0
+    validation_threshold: 0.0
+  island_source: data/islands.yaml

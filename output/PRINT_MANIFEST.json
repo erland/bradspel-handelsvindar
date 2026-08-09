@@ -1,0 +1,43 @@
+{
+  "version": "v2.0",
+  "build_flow": "YAML/Markdown + templates -> SVG/HTML -> PDF",
+  "active_card_profile": "compact_4x4",
+  "pdfs": [
+    {
+      "file": "output/pdf/board/board-a4-ink-friendly-v2.0.pdf",
+      "pages": 1
+    },
+    {
+      "file": "output/pdf/board/board-a4-standard-v2.0.pdf",
+      "pages": 1
+    },
+    {
+      "file": "output/pdf/cards/delivery-cards-compact-4x4-v2.0.pdf",
+      "pages": 1
+    },
+    {
+      "file": "output/pdf/cards/route-cards-compact-4x4-v2.0.pdf",
+      "pages": 4
+    },
+    {
+      "file": "output/pdf/components/markers-a4-v2.0.pdf",
+      "pages": 1
+    },
+    {
+      "file": "output/pdf/docs/rulebook-v2.0.pdf",
+      "pages": 8
+    },
+    {
+      "file": "output/pdf/player-aids/quick-reference-a4-4up-v2.0.pdf",
+      "pages": 1
+    },
+    {
+      "file": "output/pdf/player-aids/quick-reference-a6-v2.0.pdf",
+      "pages": 1
+    },
+    {
+      "file": "output/pdf/trade-seal-icons-reference-v2.0.pdf",
+      "pages": 1
+    }
+  ]
+}

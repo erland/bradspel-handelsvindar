@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Handelsvindar rules schema",
+  "type": "object",
+  "required": [
+    "rules"
+  ],
+  "properties": {
+    "rules": {
+      "type": "object",
+      "required": [
+        "version",
+        "ruleset_id",
+        "players",
+        "setup",
+        "turn",
+        "draw_route_cards",
+        "build_route",
+        "complete_delivery",
+        "demand",
+        "end_game",
+        "final_scoring",
+        "tie_breakers"
+      ],
+      "properties": {
+        "version": {
+          "type": "string"
+        },
+        "ruleset_id": {
+          "type": "string"
+        },
+        "players": {
+          "type": "object",
+          "required": [
+            "min",
+            "max"
+          ],
+          "properties": {
+            "min": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "max": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "setup": {
+          "type": "object",
+          "properties": {
+            "demand_marker_supply": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "turn": {
+          "type": "object",
+          "required": [
+            "actions_per_turn",
+            "available_actions"
+          ],
+          "properties": {
+            "actions_per_turn": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "available_actions": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            }
+          }
+        },
+        "draw_route_cards": {
+          "type": "object",
+          "properties": {
+            "discard_pile_used": {
+              "type": "boolean"
+            },
+            "when_deck_empty": {
+              "type": "string"
+            },
+            "open_market_cards_remain": {
+              "type": "boolean"
+            }
+          }
+        },
+        "build_route": {
+          "type": "object"
+        },
+        "complete_delivery": {
+          "type": "object",
+          "properties": {
+            "when_delivery_deck_empty": {
+              "type": "string"
+            },
+            "game_continues_with_remaining_open_deliveries": {
+              "type": "boolean"
+            }
+          }
+        },
+        "demand": {
+          "type": "object"
+        },
+        "end_game": {
+          "type": "object"
+        },
+        "final_scoring": {
+          "type": "object"
+        },
+        "tie_breakers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+      }
+    }
+  }
+}

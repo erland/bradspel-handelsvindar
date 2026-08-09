@@ -1,0 +1,28 @@
+simulation:
+  version: '0.30'
+  seed: 9001
+  games: 250
+  player_counts:
+  - 2
+  - 3
+  - 4
+  max_turns_per_game: 400
+  agent:
+    type: random_legal
+    action_weights:
+      draw_route_cards: 0.45
+      build_route: 0.35
+      complete_delivery: 0.2
+    prefer_affordable_routes: true
+    prefer_available_delivery: true
+  metrics:
+  - turns
+  - rounds
+  - scores
+  - completed_deliveries
+  - built_routes
+  - unused_ports
+  - end_triggered
+  - stalemate
+  interpretation: Hypotesverktyg för tempo, resursflöde och uppenbara dödlägen. Ersätter
+    inte mänskligt speltest.

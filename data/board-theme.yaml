@@ -1,0 +1,143 @@
+board_theme:
+  version: '2.0'
+  active: standard
+  themes:
+    standard:
+      id: coastal_chart
+      description: Modernt illustrerat sjökort med varm pappersgrund och tydliga spelkontraster.
+      palette:
+        paper: '#F3E8CE'
+        paper_shadow: '#E8D8B7'
+        sea: '#A9CDD1'
+        sea_deep: '#76AAB2'
+        land: '#D8C996'
+        land_shadow: '#BDAE78'
+        ink: '#26383E'
+        muted_ink: '#58686B'
+        label: '#FFF9E8'
+        label_border: '#6D7774'
+        cost_fill: '#FFFDF4'
+        frame: '#33494F'
+        accent: '#A45A3A'
+      typography:
+        title_family: DejaVu Serif
+        title_size: 9.5
+        port_family: DejaVu Sans
+        port_size: 3.7
+        legend_size: 3.0
+        body_size: 2.8
+      routes:
+        blå:
+          color: '#2A718D'
+          halo: '#FFFDF4'
+          width_mm: 1.98
+          dash: null
+          symbol: circle
+        röd:
+          color: '#B45445'
+          halo: '#FFFDF4'
+          width_mm: 1.936
+          dash: 9,2
+          symbol: triangle
+        grön:
+          color: '#4F8461'
+          halo: '#FFFDF4'
+          width_mm: 1.936
+          dash: 2,3
+          symbol: square
+        lila:
+          color: '#715298'
+          halo: '#FFFDF4'
+          width_mm: 1.936
+          dash: 5,3
+          symbol: diamond
+      ports:
+        outer_radius_mm: 5.4
+        inner_radius_mm: 3.6
+        icon: anchor
+        label_background: true
+      decorations:
+        show_coastline: true
+        show_wave_pattern: true
+        show_compass: true
+        show_trade_winds: true
+        show_region_tints: true
+      background:
+        enabled: true
+        image: assets/backgrounds/master/board-background-master-v0.24.png
+        opacity: 0.88
+        wash_color: '#FFFDF4'
+        wash_opacity: 0.1
+        fit: cover
+        suppress_generated_terrain: true
+        suppress_generated_decorations: true
+    ink_friendly:
+      id: coastal_chart_ink
+      description: Tonersnål variant med vit bakgrund, tunna kustlinjer och starka
+        linjemönster.
+      palette:
+        paper: '#FFFFFF'
+        paper_shadow: '#FFFFFF'
+        sea: '#FFFFFF'
+        sea_deep: '#E8E8E8'
+        land: '#FFFFFF'
+        land_shadow: '#DDDDDD'
+        ink: '#111111'
+        muted_ink: '#555555'
+        label: '#FFFFFF'
+        label_border: '#555555'
+        cost_fill: '#FFFFFF'
+        frame: '#222222'
+        accent: '#333333'
+      typography:
+        title_family: DejaVu Serif
+        title_size: 9.5
+        port_family: DejaVu Sans
+        port_size: 3.7
+        legend_size: 3.0
+        body_size: 2.8
+      routes:
+        blå:
+          color: '#111111'
+          halo: '#FFFFFF'
+          width_mm: 1.892
+          dash: null
+          symbol: circle
+        röd:
+          color: '#111111'
+          halo: '#FFFFFF'
+          width_mm: 1.892
+          dash: 9,2
+          symbol: triangle
+        grön:
+          color: '#111111'
+          halo: '#FFFFFF'
+          width_mm: 1.892
+          dash: 2,3
+          symbol: square
+        lila:
+          color: '#111111'
+          halo: '#FFFFFF'
+          width_mm: 1.892
+          dash: 5,3
+          symbol: diamond
+      ports:
+        outer_radius_mm: 5.4
+        inner_radius_mm: 3.6
+        icon: anchor
+        label_background: true
+      decorations:
+        show_coastline: true
+        show_wave_pattern: false
+        show_compass: true
+        show_trade_winds: false
+        show_region_tints: false
+      background:
+        enabled: false
+        image: null
+        opacity: 0.0
+        wash_color: '#FFFFFF'
+        wash_opacity: 0.0
+        fit: cover
+        suppress_generated_terrain: false
+        suppress_generated_decorations: false

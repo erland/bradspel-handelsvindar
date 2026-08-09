@@ -1,0 +1,96 @@
+coastline:
+  version: '0.20'
+  landmasses:
+  - id: main_coast
+    closed: true
+    points:
+    - - 9
+      - 62
+    - - 32
+      - 52
+    - - 54
+      - 58
+    - - 72
+      - 46
+    - - 96
+      - 35
+    - - 118
+      - 43
+    - - 138
+      - 61
+    - - 157
+      - 73
+    - - 176
+      - 68
+    - - 198
+      - 51
+    - - 220
+      - 39
+    - - 246
+      - 42
+    - - 286
+      - 63
+    - - 286
+      - 202
+    - - 10
+      - 202
+  - id: north_islands
+    closed: true
+    points:
+    - - 124
+      - 32
+    - - 137
+      - 26
+    - - 151
+      - 30
+    - - 154
+      - 39
+    - - 143
+      - 44
+    - - 129
+      - 41
+  - id: east_island
+    closed: true
+    points:
+    - - 245
+      - 90
+    - - 259
+      - 84
+    - - 276
+      - 92
+    - - 279
+      - 108
+    - - 268
+      - 118
+    - - 251
+      - 113
+  wave_rows:
+  - y_mm: 78
+    x_start_mm: 18
+    x_end_mm: 281
+    step_mm: 18
+  - y_mm: 96
+    x_start_mm: 14
+    x_end_mm: 285
+    step_mm: 18
+  - y_mm: 154
+    x_start_mm: 16
+    x_end_mm: 284
+    step_mm: 18
+  - y_mm: 176
+    x_start_mm: 18
+    x_end_mm: 279
+    step_mm: 18
+  compass:
+    x_mm: 273
+    y_mm: 35
+    radius_mm: 10
+  trade_winds:
+  - x1: 112
+    y1: 19
+    x2: 160
+    y2: 21
+  - x1: 185
+    y1: 29
+    x2: 225
+    y2: 34

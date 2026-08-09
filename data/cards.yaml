@@ -1,0 +1,416 @@
+route_cards:
+- id: F001
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F002
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F003
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F004
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F005
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F006
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F007
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F008
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F009
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F010
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F011
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F012
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F013
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F014
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F015
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F016
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F017
+  type: blå
+  name: Blått sigill
+  text: Spelas för att etablera en blå led.
+  count: 1
+  symbol: circle
+  icon_image: assets/icons/trade-seals/blue-trade-seal.png
+- id: F018
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F019
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F020
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F021
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F022
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F023
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F024
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F025
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F026
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F027
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F028
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F029
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F030
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F031
+  type: röd
+  name: Rött sigill
+  text: Spelas för att etablera en röd led.
+  count: 1
+  symbol: triangle
+  icon_image: assets/icons/trade-seals/red-trade-seal.png
+- id: F032
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F033
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F034
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F035
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F036
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F037
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F038
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F039
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F040
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F041
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F042
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F043
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F044
+  type: grön
+  name: Grönt sigill
+  text: Spelas för att etablera en grön led.
+  count: 1
+  symbol: square
+  icon_image: assets/icons/trade-seals/green-trade-seal.png
+- id: F045
+  type: lila
+  name: Lila sigill
+  text: Spelas för att etablera en lila led.
+  count: 1
+  symbol: diamond
+  icon_image: assets/icons/trade-seals/purple-trade-seal.png
+- id: F046
+  type: lila
+  name: Lila sigill
+  text: Spelas för att etablera en lila led.
+  count: 1
+  symbol: diamond
+  icon_image: assets/icons/trade-seals/purple-trade-seal.png
+- id: F047
+  type: lila
+  name: Lila sigill
+  text: Spelas för att etablera en lila led.
+  count: 1
+  symbol: diamond
+  icon_image: assets/icons/trade-seals/purple-trade-seal.png
+- id: F048
+  type: lila
+  name: Lila sigill
+  text: Spelas för att etablera en lila led.
+  count: 1
+  symbol: diamond
+  icon_image: assets/icons/trade-seals/purple-trade-seal.png
+- id: F049
+  type: lila
+  name: Lila sigill
+  text: Spelas för att etablera en lila led.
+  count: 1
+  symbol: diamond
+  icon_image: assets/icons/trade-seals/purple-trade-seal.png
+- id: F050
+  type: lila
+  name: Lila sigill
+  text: Spelas för att etablera en lila led.
+  count: 1
+  symbol: diamond
+  icon_image: assets/icons/trade-seals/purple-trade-seal.png
+- id: F051
+  type: lila
+  name: Lila sigill
+  text: Spelas för att etablera en lila led.
+  count: 1
+  symbol: diamond
+  icon_image: assets/icons/trade-seals/purple-trade-seal.png
+- id: F052
+  type: lila
+  name: Lila sigill
+  text: Spelas för att etablera en lila led.
+  count: 1
+  symbol: diamond
+  icon_image: assets/icons/trade-seals/purple-trade-seal.png
+- id: F053
+  type: lila
+  name: Lila sigill
+  text: Spelas för att etablera en lila led.
+  count: 1
+  symbol: diamond
+  icon_image: assets/icons/trade-seals/purple-trade-seal.png
+- id: F054
+  type: lila
+  name: Lila sigill
+  text: Spelas för att etablera en lila led.
+  count: 1
+  symbol: diamond
+  icon_image: assets/icons/trade-seals/purple-trade-seal.png
+- id: F055
+  type: lila
+  name: Lila sigill
+  text: Spelas för att etablera en lila led.
+  count: 1
+  symbol: diamond
+  icon_image: assets/icons/trade-seals/purple-trade-seal.png
+- id: F056
+  type: handelsvind
+  name: Handelsvind
+  text: 'Joker: ersätter ett handelssigill av valfri färg.'
+  count: 1
+  symbol: star
+- id: F057
+  type: handelsvind
+  name: Handelsvind
+  text: 'Joker: ersätter ett handelssigill av valfri färg.'
+  count: 1
+  symbol: star
+- id: F058
+  type: handelsvind
+  name: Handelsvind
+  text: 'Joker: ersätter ett handelssigill av valfri färg.'
+  count: 1
+  symbol: star
+- id: F059
+  type: handelsvind
+  name: Handelsvind
+  text: 'Joker: ersätter ett handelssigill av valfri färg.'
+  count: 1
+  symbol: star
+- id: F060
+  type: handelsvind
+  name: Handelsvind
+  text: 'Joker: ersätter ett handelssigill av valfri färg.'
+  count: 1
+  symbol: star

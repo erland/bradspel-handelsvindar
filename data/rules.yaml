@@ -1,0 +1,81 @@
+rules:
+  version: '2.0'
+  ruleset_id: handelsvindar_core_v2_0
+  players:
+    min: 2
+    max: 4
+  setup:
+    starting_hand_size: 4
+    open_route_card_slots: 5
+    open_delivery_slots: 4
+    route_markers_by_player_count:
+      '2': 18
+      '3': 20
+      '4': 17
+    starting_score: 0
+    starting_demand_per_port: 0
+    random_start_player: true
+    demand_marker_supply: 16
+    two_player_remove_delivery_cards: 6
+  turn:
+    actions_per_turn: 1
+    available_actions:
+    - draw_route_cards
+    - build_route
+    - complete_delivery
+    clockwise: true
+  draw_route_cards:
+    normal_draw_count: 2
+    sources:
+    - open_market
+    - deck_top
+    refill_open_market_immediately: true
+    open_wild_card_ends_action: true
+    blind_wild_card_ends_action: false
+    discard_pile_used: true
+    when_deck_empty: shuffle_discard_pile_to_new_deck
+    open_market_cards_remain: true
+    open_wild_must_be_only_draw: true
+    open_wild_cannot_be_second_draw: true
+  build_route:
+    requires_unowned_route: true
+    cards_required_equals_route_cost: true
+    wild_card_type: handelsvind
+    max_wild_cards_per_build: 1
+    route_is_exclusive: true
+    markers_spent_equals_route_cost: true
+    build_points_by_cost:
+      '1': 1
+      '2': 2
+      '3': 4
+      '4': 6
+    requires_matching_route_color: true
+    discard_spent_cards: true
+  complete_delivery:
+    delivery_must_be_open: true
+    requires_connected_owned_path: true
+    consume_delivery_card: true
+    refill_open_deliveries: true
+    base_points_from_delivery_card: true
+    destination_field: to
+    when_delivery_deck_empty: do_not_refill_empty_slot
+    game_continues_with_remaining_open_deliveries: true
+    keep_completed_card_face_up: true
+  demand:
+    track_by_destination_port: true
+    first_delivery_bonus: 2
+    second_delivery_modifier: 0
+    third_or_later_penalty: -2
+    increment_after_delivery: 1
+    marker_cap_per_destination: 3
+  end_game:
+    trigger_when_route_markers_at_or_below: 5
+    trigger_checked_after_turn: true
+    final_turn_policy: each_player_gets_one_final_turn_including_triggering_player
+  final_scoring:
+    largest_connected_network_bonus: 7
+    largest_network_tie_policy: no_player_gets_bonus
+    network_size_counts_routes_not_markers: true
+  tie_breakers:
+  - most_completed_deliveries
+  - shared_victory

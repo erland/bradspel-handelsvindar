@@ -1,0 +1,224 @@
+board:
+  version: '2.0'
+  ports:
+  - id: P01
+    name: Nordhamn
+    region: nord
+  - id: P02
+    name: Klippvik
+    region: nord
+  - id: P03
+    name: Stormö
+    region: nord
+  - id: P04
+    name: Vitnäs
+    region: nord
+  - id: P05
+    name: Västerhamn
+    region: väst
+  - id: P06
+    name: Saltvik
+    region: väst
+  - id: P07
+    name: Kopparhamn
+    region: väst
+  - id: P08
+    name: Skärudden
+    region: väst
+  - id: P09
+    name: Österhamn
+    region: öst
+  - id: P10
+    name: Tallhamn
+    region: öst
+  - id: P11
+    name: Solvik
+    region: öst
+  - id: P12
+    name: Glasö
+    region: öst
+  - id: P13
+    name: Söderhamn
+    region: syd
+  - id: P14
+    name: Sandvik
+    region: syd
+  - id: P15
+    name: Ängshamn
+    region: syd
+  - id: P16
+    name: Ekhult
+    region: syd
+  connections:
+  - id: R01
+    from: Nordhamn
+    to: Klippvik
+    route_type: blå
+    cost: 2
+  - id: R02
+    from: Nordhamn
+    to: Västerhamn
+    route_type: lila
+    cost: 3
+  - id: R03
+    from: Nordhamn
+    to: Kopparhamn
+    route_type: blå
+    cost: 2
+  - id: R04
+    from: Klippvik
+    to: Kopparhamn
+    route_type: blå
+    cost: 2
+  - id: R05
+    from: Klippvik
+    to: Stormö
+    route_type: grön
+    cost: 2
+  - id: R06
+    from: Klippvik
+    to: Vitnäs
+    route_type: röd
+    cost: 3
+  - id: R07
+    from: Stormö
+    to: Vitnäs
+    route_type: blå
+    cost: 1
+  - id: R08
+    from: Stormö
+    to: Tallhamn
+    route_type: lila
+    cost: 3
+  - id: R09
+    from: Vitnäs
+    to: Tallhamn
+    route_type: blå
+    cost: 2
+  - id: R10
+    from: Vitnäs
+    to: Glasö
+    route_type: blå
+    cost: 2
+  - id: R11
+    from: Västerhamn
+    to: Saltvik
+    route_type: grön
+    cost: 2
+  - id: R12
+    from: Västerhamn
+    to: Kopparhamn
+    route_type: blå
+    cost: 2
+  - id: R13
+    from: Västerhamn
+    to: Skärudden
+    route_type: blå
+    cost: 2
+  - id: R14
+    from: Saltvik
+    to: Skärudden
+    route_type: grön
+    cost: 2
+  - id: R15
+    from: Saltvik
+    to: Sandvik
+    route_type: lila
+    cost: 3
+  - id: R16
+    from: Kopparhamn
+    to: Skärudden
+    route_type: blå
+    cost: 2
+  - id: R17
+    from: Kopparhamn
+    to: Vitnäs
+    route_type: röd
+    cost: 3
+  - id: R18
+    from: Kopparhamn
+    to: Ekhult
+    route_type: röd
+    cost: 3
+  - id: R19
+    from: Skärudden
+    to: Ängshamn
+    route_type: grön
+    cost: 2
+  - id: R20
+    from: Skärudden
+    to: Ekhult
+    route_type: grön
+    cost: 2
+  - id: R21
+    from: Ängshamn
+    to: Sandvik
+    route_type: blå
+    cost: 2
+  - id: R22
+    from: Ängshamn
+    to: Ekhult
+    route_type: lila
+    cost: 1
+  - id: R23
+    from: Ängshamn
+    to: Söderhamn
+    route_type: blå
+    cost: 2
+  - id: R24
+    from: Sandvik
+    to: Söderhamn
+    route_type: blå
+    cost: 2
+  - id: R25
+    from: Sandvik
+    to: Österhamn
+    route_type: röd
+    cost: 3
+  - id: R26
+    from: Ekhult
+    to: Söderhamn
+    route_type: lila
+    cost: 2
+  - id: R27
+    from: Ekhult
+    to: Solvik
+    route_type: grön
+    cost: 2
+  - id: R28
+    from: Söderhamn
+    to: Österhamn
+    route_type: röd
+    cost: 3
+  - id: R29
+    from: Söderhamn
+    to: Solvik
+    route_type: grön
+    cost: 2
+  - id: R30
+    from: Solvik
+    to: Österhamn
+    route_type: blå
+    cost: 2
+  - id: R31
+    from: Solvik
+    to: Tallhamn
+    route_type: röd
+    cost: 3
+  - id: R32
+    from: Solvik
+    to: Glasö
+    route_type: grön
+    cost: 2
+  - id: R33
+    from: Tallhamn
+    to: Glasö
+    route_type: blå
+    cost: 2
+  - id: R34
+    from: Glasö
+    to: Österhamn
+    route_type: röd
+    cost: 2
+  layout:
+    layout_source: data/board-layout.yaml

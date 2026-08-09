@@ -1,0 +1,8 @@
+@page { size:A4; margin:18mm 17mm 18mm 17mm; @bottom-right {content: counter(page); color:#667; font-size:9pt;} }
+body{font-family:DejaVu Sans,sans-serif;color:#24343b;font-size:10.5pt;line-height:1.45}
+header{background:#1F596E;color:white;padding:18mm 15mm;margin:-18mm -17mm 15mm -17mm;min-height:62mm}
+.kicker{letter-spacing:1.7px;font-size:9pt}.cover{font-size:29pt;margin:8mm 0 2mm}.lead{font-size:13pt;max-width:125mm}
+main>h1{display:none}h2{color:#1F596E;border-bottom:1.2pt solid #9ab7c2;padding-bottom:2mm;margin-top:8mm;break-after:avoid}
+h3{color:#A65D2D;margin-top:5mm;break-after:avoid}p{margin:2.5mm 0}ul{margin:2mm 0 3mm 5mm}
+.step{background:#edf4f5;padding:2.5mm 4mm;border-left:3mm solid #2E8B70}
+footer{position:fixed;bottom:-11mm;left:0;color:#778;font-size:8pt}

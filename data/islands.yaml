@@ -1,0 +1,34 @@
+islands:
+  version: '0.30'
+  description: Större sammanhängande landmassor. Interna rutter är landsvägar eller
+    flodleder; vattenleder går mellan öarna.
+  land_bridge_width_mm: 28
+  groups:
+  - id: westland
+    name: Västlandet
+    ports:
+    - Nordhamn
+    - Klippvik
+    - Västerhamn
+    - Kopparhamn
+    - Skärudden
+  - id: northeast_island
+    name: Nordöstön
+    ports:
+    - Stormö
+    - Vitnäs
+    - Tallhamn
+    - Glasö
+  - id: southland
+    name: Sydlandet
+    ports:
+    - Saltvik
+    - Sandvik
+    - Ängshamn
+    - Ekhult
+    - Söderhamn
+  - id: east_island
+    name: Österön
+    ports:
+    - Solvik
+    - Österhamn

@@ -1,0 +1,42 @@
+version: '2.0'
+pipeline: YAML/Markdown + templates -> SVG/HTML -> PDF
+active_card_profile: compact_4x4
+card_profiles:
+  compact_4x4:
+    page: A4
+    columns: 4
+    rows: 4
+    card_width_mm: 47.5
+    card_height_mm: 67.5
+    margin_x_mm: 7.0
+    margin_y_mm: 7.0
+    gap_x_mm: 2.0
+    gap_y_mm: 4.0
+    purpose: ink- och papperssnål speltestprototyp
+  large_3x3:
+    page: A4
+    columns: 3
+    rows: 3
+    card_width_mm: 63.0
+    card_height_mm: 88.0
+    margin_x_mm: 8.0
+    margin_y_mm: 11.0
+    gap_x_mm: 2.5
+    gap_y_mm: 4.5
+    purpose: framtida större eller mer illustrerad layout
+player_aids:
+  quick_reference:
+    master_size: A6
+    width_mm: 105
+    height_mm: 148
+    a4_imposition: 2x2
+outputs:
+  pdf_root: output/pdf
+  svg_root: output/svg
+  route_cards: output/pdf/cards/route-cards-compact-4x4-v2.0.pdf
+  delivery_cards: output/pdf/cards/delivery-cards-compact-4x4-v2.0.pdf
+  quick_reference_a6: output/pdf/player-aids/quick-reference-a6-v2.0.pdf
+  quick_reference_a4_4up: output/pdf/player-aids/quick-reference-a4-4up-v2.0.pdf
+  rulebook: output/pdf/docs/rulebook-v2.0.pdf
+  board_standard: output/pdf/board/board-a4-standard-v2.0.pdf
+  board_ink_friendly: output/pdf/board/board-a4-ink-friendly-v2.0.pdf

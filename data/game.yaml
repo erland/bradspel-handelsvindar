@@ -1,0 +1,59 @@
+game:
+  title: Handelsvindar
+  version: '2.0'
+  status: v2.0 nybörjarvänlig blindtestrelease
+  players:
+    min: 2
+    max: 4
+  playtime_minutes:
+    min: 30
+    max: 45
+  age: 8+
+  core_loop:
+  - samla handelssigillkort
+  - bygg handelsled
+  - genomför leverans
+  route_colors:
+  - id: blå
+    name: Blå led
+    card_name: Blått handelssigill
+  - id: röd
+    name: Röd led
+    card_name: Rött handelssigill
+  - id: grön
+    name: Grön led
+    card_name: Grönt handelssigill
+  - id: lila
+    name: Lila led
+    card_name: Lila handelssigill
+  components:
+    board: 1
+    trade_seal_cards: 60
+    delivery_cards: 16
+    demand_markers: 16
+    route_markers_per_player:
+      2_players: 18
+      3_players: 20
+      4_players: 17
+    quick_reference: 1
+    rulebook: 1
+  release_channel: blindtest
+  rules_locked: true
+  premise: Örikets handelsgillen tävlar om att bygga pålitliga förbindelser mellan
+    hamnar och handelsplatser.
+  player_role: ledare för ett handelsgille
+  objective: samla flest poäng genom handelsleder, leveranser och största sammanhängande
+    nätverk
+  first_time_summary:
+  - samla handelssigillkort
+  - etablera en handelsled
+  - koppla ihop leder till ett nätverk
+  - genomför leveranser genom ditt eget nätverk
+  terminology:
+    place: namngiven punkt på spelbrädet
+    trade_route: färgad förbindelse mellan två platser
+    route_slot: rund cirkel som täcks av en ledmarkör
+    trade_seal_card: kort som betalar en handelsled
+    tradewind_card: jokerkort
+    delivery_card: öppet mål med start, destination och poäng
+    demand_marker: visar tidigare leveranser till destinationen
