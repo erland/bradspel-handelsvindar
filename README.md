@@ -2,34 +2,59 @@
 
 ## Version
 
-v2.0 - nybörjarvänlig blindtestrelease.
+v2.1 - blindtestredo print-and-play med GitHub Actions för validering, preview och release.
 
 ## Spelidé
 
 Du leder ett handelsgille i ett växande örike. Samla handelssigill, etablera handelsleder och använd ditt eget nätverk för att leverera varor. Flest poäng vinner.
 
-## Rekommenderade filer
-
-Använd endast filerna i:
+## Projektstruktur
 
 ```text
-release/v2.0/
+README.md
+.github/
+  workflows/
+    01-validate.yml
+    02-build-preview.yml
+    03-release.yml
+assets/
+data/
+docs/
+schemas/
+scripts/
+templates/
+output/
+release/
 ```
 
-PDF är rekommenderat utskriftsformat. YAML, Markdown, mallar och script är projektets källor.
+`.github/` ligger alltså på samma nivå som `README.md`.
 
-## Bygg
+## GitHub Actions
+
+- **Validate** kör snabb käll- och konsistensvalidering på PR och push till `main`.
+- **Build Print Preview** startas manuellt och skapar ett artifact med alla PDF-filer som ska kunna skrivas ut.
+- **Release Print-and-Play** triggas av taggen `vX.Y` och publicerar separata PDF-assets plus en komplett print-and-play-zip som GitHub Release.
+
+Se `docs/github-actions.md`.
+
+## Kanoniskt printpaket
+
+`data/release.yaml` anger exakt vilka PDF-filer som ska ingå i preview och release.
+
+## Lokalt bygge
+
+Validering:
 
 ```bash
-python scripts/build_trade_seal_icons.py
-python scripts/validate_rules.py
-python scripts/check_rulebook_consistency.py
-python scripts/build_all.py
-python scripts/check_project_consistency.py
+python -m pip install -r requirements-validation.txt
+python scripts/validate_project.py .
 ```
 
-Byggsteget rensar äldre genererad output innan aktuella filer skapas.
+Komplett printbygge:
 
-## Projektzipens storlek
+```bash
+python -m pip install -r requirements-build.txt
+python scripts/build_print_package.py --output-dir build/preview
+```
 
-Den levererade zippen behåller aktuella PDF-filer och spelbrädets SVG-overlay. Stora mellanliggande SVG-filer för kort och spelarhjälp samt förhandsbilder är borttagna eftersom de kan genereras om med `scripts/build_all.py`.
+PDF är rekommenderat utskriftsformat. YAML, Markdown, mallar, script och källgrafik är projektets källor.

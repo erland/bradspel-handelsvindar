@@ -2,26 +2,25 @@
 
 ## Version
 
-v2.0
+v2.1
 
 ## Status
 
-Nybörjarvänlig blindtestrelease med omarbetad regelbok.
+Blindtestredo print-and-play med automatiserad GitHub-validering, preview-build och release-publicering.
 
 ## Klart
 
-- berättelse, spelarroll och mål tydliggjorda
-- regelboken omstrukturerad i spelordning
-- spelbrädets delar och ledplatser förklarade
-- turhandlingar skrivna steg för steg
-- fem spel- och regelexempel
-- första-partiet-guide
-- utökad FAQ och ordlista
-- YAML och regelbok synkroniserade
-- PDF-utskriftspaket regenererat
-- äldre releaser och inaktuella versionsanteckningar borttagna
-- endast release/v2.0 följer med
+- `.github/` ligger i projektroten bredvid `README.md`
+- snabb Validate-workflow för PR och push till `main`
+- manuell Build Print Preview-workflow
+- taggstyrd Release Print-and-Play-workflow
+- `data/release.yaml` definierar exakt vilka printfiler som är kanoniska
+- reproducerbara Python-beroenden är versionslåsta
+- lokal validator kontrollerar filer, YAML, versioner, speldata, ikoner och printmanifest
+- preview/release byggs från källfiler och verifierar varje PDF
+- GitHub Release får separata PDF-assets och en komplett print-and-play-zip
+- äldre releasekataloger rensas; endast v2.1 behålls i projektzippen
 
 ## Nästa steg
 
-Genomför minst tre blindtester där konstruktören inte hjälper gruppen under spelet.
+Lägg projektet i ett GitHub-repository, pusha till `main` och kör `Build Print Preview` manuellt. När previewn är godkänd skapas taggen `v2.1`.

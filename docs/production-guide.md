@@ -1,8 +1,8 @@
-# Produktions- och buildguide v2.0
+# Produktions- och buildguide v2.1
 
 ## Rekommenderat utskriftspaket
 
-Använd PDF-filerna i `release/v2.0/print/`.
+Använd PDF-filerna i `release/v2.1/print/`.
 
 ## Byggflöde
 
@@ -19,7 +19,7 @@ data/*.yaml + docs/*.md + templates/* + assets/*
               output/pdf
                 |
                 v
-          release/v2.0/print
+          release/v2.1/print
 ```
 
 ## Kortprofiler
@@ -50,3 +50,13 @@ Använd papper och penna. Något separat poängspår krävs inte.
 ## Rensning
 
 `python scripts/build_all.py` raderar äldre genererad PDF-, SVG- och PNG-output innan nya filer skapas. Källfiler i `data/`, `docs/`, `templates/`, `scripts/` och `assets/` påverkas inte.
+
+## GitHub-publicering
+
+`data/release.yaml` är källan för vilka PDF-filer som publiceras.
+
+- PR/push till `main`: snabb validering
+- manuell workflow: preview-artifact
+- `v*`-tagg: GitHub Release med PDF-assets och komplett print-and-play-zip
+
+Se `docs/github-actions.md`.
