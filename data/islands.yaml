@@ -1,5 +1,5 @@
 islands:
-  version: '0.30'
+  data_revision: '0.30'
   description: Större sammanhängande landmassor. Interna rutter är landsvägar eller
     flodleder; vattenleder går mellan öarna.
   land_bridge_width_mm: 28

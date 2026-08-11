@@ -1,8 +1,8 @@
-# Produktions- och buildguide v2.1
+# Produktions- och buildguide
 
 ## Rekommenderat utskriftspaket
 
-Använd PDF-filerna i `release/v2.1/print/`.
+Använd PDF-filerna som byggs av `scripts/build_print_package.py` eller publiceras i GitHub Release.
 
 ## Byggflöde
 
@@ -19,7 +19,7 @@ data/*.yaml + docs/*.md + templates/* + assets/*
               output/pdf
                 |
                 v
-          release/v2.1/print
+          GitHub Release / preview-artifact
 ```
 
 ## Kortprofiler
@@ -60,3 +60,11 @@ Använd papper och penna. Något separat poängspår krävs inte.
 - `v*`-tagg: GitHub Release med PDF-assets och komplett print-and-play-zip
 
 Se `docs/github-actions.md`.
+
+## Versionshantering av genererade filer
+
+`output/` och `release/` är arbets- respektive publiceringsoutput och ska inte checkas in.
+
+De fyra PNG-filerna i `assets/icons/trade-seals/` är däremot godkända produktionsassets och ska versionshanteras. Det ursprungliga AI-genererade 2x2-arket behålls i `assets/icons/source/`.
+
+`scripts/build_trade_seal_icons.py` är ett manuellt asset-verktyg och ingår inte i normala preview- eller releasebyggen.

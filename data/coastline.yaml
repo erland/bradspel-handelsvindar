@@ -1,5 +1,5 @@
 coastline:
-  version: '0.20'
+  data_revision: '0.20'
   landmasses:
   - id: main_coast
     closed: true

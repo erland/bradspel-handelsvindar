@@ -1,26 +1,22 @@
 # Projektstatus
 
-## Version
-
-v2.1
-
 ## Status
 
-Blindtestredo print-and-play med automatiserad GitHub-validering, preview-build och release-publicering.
+Källrent GitHub-projekt med en enda kanonisk projektversion i `VERSION`.
 
 ## Klart
 
-- `.github/` ligger i projektroten bredvid `README.md`
-- snabb Validate-workflow för PR och push till `main`
-- manuell Build Print Preview-workflow
-- taggstyrd Release Print-and-Play-workflow
-- `data/release.yaml` definierar exakt vilka printfiler som är kanoniska
-- reproducerbara Python-beroenden är versionslåsta
-- lokal validator kontrollerar filer, YAML, versioner, speldata, ikoner och printmanifest
-- preview/release byggs från källfiler och verifierar varje PDF
-- GitHub Release får separata PDF-assets och en komplett print-and-play-zip
-- äldre releasekataloger rensas; endast v2.1 behålls i projektzippen
+- projektversionen är borttagen från speldata, layoutdata, regler och dokumentrubriker
+- `VERSION` är enda kanoniska källa för aktuell releaseversion
+- `ruleset_id` är stabilt och inte kopplat till releaseversion
+- lokala outputfilnamn är versionsfria
+- `data/release.yaml` och `data/print-layouts.yaml` är versionsfria
+- regelbokens Markdown är versionsfri; PDF-generatorn kan lägga in releaseversion vid build
+- Git-taggen kontrolleras mot `VERSION`
+- release-zippen versionsmärks automatiskt
+- godkända handelssigill-PNG:er ligger kvar som produktionsassets
+- `output/`, `release/`, `build/` och `dist/` är genererade och ignorerade
 
 ## Nästa steg
 
-Lägg projektet i ett GitHub-repository, pusha till `main` och kör `Build Print Preview` manuellt. När previewn är godkänd skapas taggen `v2.1`.
+Pusha ändringen och kontrollera att en framtida versionshöjning i normalfallet bara kräver en ändring i `VERSION`, en changelogpost och en ny Git-tagg.

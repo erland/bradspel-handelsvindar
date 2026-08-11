@@ -475,7 +475,7 @@ def main():
     rng=random.Random(args.seed)
     counts=[args.players] if args.players else CONFIG["player_counts"]
     report={
-        "version":CONFIG["version"],
+        "version":(ROOT/"VERSION").read_text(encoding="utf-8").strip(),
         "warning":CONFIG["interpretation"],
         "engine_constraints":{
             "uses_actual_hands":True,"uses_open_market":True,"opponent_hands_hidden":True,

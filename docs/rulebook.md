@@ -1,4 +1,4 @@
-# Handelsvindar v2.1
+# Handelsvindar
 
 ## Välkommen till Handelsvindar
 

@@ -15,8 +15,10 @@ from PIL import Image
 
 REQUIRED_PATHS = (
     "README.md",
+    "VERSION",
     "PROJECT_STATUS.md",
     "CHANGELOG.md",
+    ".gitignore",
     "data/board.yaml",
     "data/board-layout.yaml",
     "data/board-theme.yaml",
@@ -33,6 +35,10 @@ REQUIRED_PATHS = (
     "scripts/validate_rules.py",
     "scripts/check_rulebook_consistency.py",
     "assets/backgrounds/master/board-background-master-v0.24.png",
+    "assets/icons/trade-seals/blue-trade-seal.png",
+    "assets/icons/trade-seals/red-trade-seal.png",
+    "assets/icons/trade-seals/green-trade-seal.png",
+    "assets/icons/trade-seals/purple-trade-seal.png",
 )
 
 SOURCE_VALIDATORS = (
@@ -41,14 +47,6 @@ SOURCE_VALIDATORS = (
     "scripts/check_board_layout.py",
 )
 
-VERSIONED_SOURCES = {
-    "board": ("data/board.yaml", "board"),
-    "board_layout": ("data/board-layout.yaml", "board_layout"),
-    "board_theme": ("data/board-theme.yaml", "board_theme"),
-    "game": ("data/game.yaml", "game"),
-    "rules": ("data/rules.yaml", "rules"),
-    "strategies": ("data/strategies.yaml", "strategic_simulation"),
-}
 
 
 def fail(errors: list[str], message: str) -> None:
@@ -66,12 +64,28 @@ def main() -> int:
     parser.add_argument(
         "--expected-tag",
         default="",
-        help="Optional Git tag, e.g. v2.1. Must match the project version.",
+        help="Optional Git tag, e.g. vX.Y. Must match VERSION.",
+    )
+    parser.add_argument(
+        "--repository-clean",
+        action="store_true",
+        help="Fail if generated output/release files are present in the source tree.",
     )
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
     errors: list[str] = []
+
+    # Check the checkout before any validator/build step is allowed to create
+    # generated files of its own.
+    if args.repository_clean:
+        for generated_dir in ("output", "release", "build", "dist"):
+            folder = root / generated_dir
+            if folder.exists() and any(p.is_file() for p in folder.rglob("*")):
+                fail(
+                    errors,
+                    f"Genererade filer finns i {generated_dir}/ i källcheckouten.",
+                )
 
     for rel in REQUIRED_PATHS:
         if not (root / rel).exists():
@@ -91,7 +105,7 @@ def main() -> int:
         return 1
 
     release_cfg = load_yaml(root / "data/release.yaml")
-    version = str(release_cfg.get("version", ""))
+    version = (root / "VERSION").read_text(encoding="utf-8").strip()
     if not re.fullmatch(r"\d+\.\d+(?:\.\d+)?(?:-[0-9A-Za-z.-]+)?", version):
         fail(errors, f"Ogiltigt release-versionformat: {version!r}")
 
@@ -103,23 +117,49 @@ def main() -> int:
                 f"Git-taggen {args.expected_tag!r} matchar inte projektversionen {expected!r}.",
             )
 
-    # Version alignment.
-    for label, (rel, key) in VERSIONED_SOURCES.items():
-        obj = load_yaml(root / rel)[key]
-        found = str(obj.get("version", ""))
-        if found != version:
-            fail(errors, f"{label}: version {found!r}, väntat {version!r}")
+    # Release version belongs only in VERSION. Content/config sources must not
+    # carry a duplicate project release version.
+    version_keys = []
+    for path in sorted((root / "data").rglob("*.yaml")):
+        rel = str(path.relative_to(root))
+        raw = load_yaml(path)
+        def walk(obj, node_path=""):
+            if isinstance(obj, dict):
+                for key, value in obj.items():
+                    here = f"{node_path}.{key}" if node_path else str(key)
+                    if key == "version":
+                        version_keys.append(f"{rel}:{here}")
+                    walk(value, here)
+            elif isinstance(obj, list):
+                for idx, value in enumerate(obj):
+                    walk(value, f"{node_path}[{idx}]")
+        walk(raw)
+    if version_keys:
+        fail(errors, "Projektversion ska inte dupliceras i YAML: " + ", ".join(version_keys))
 
-    print_layouts = load_yaml(root / "data/print-layouts.yaml")
-    if str(print_layouts.get("version", "")) != version:
-        fail(errors, "data/print-layouts.yaml har fel version.")
-
-    rulebook = (root / "docs/rulebook.md").read_text(encoding="utf-8")
-    readme = (root / "README.md").read_text(encoding="utf-8")
-    if f"v{version}" not in rulebook:
-        fail(errors, "Regelboken saknar aktuell version i rubriken.")
-    if f"v{version}" not in readme:
-        fail(errors, "README saknar aktuell version.")
+    current_tag = f"v{version}"
+    duplicated_tag_files = []
+    for path in sorted(root.rglob("*")):
+        if not path.is_file():
+            continue
+        if path.name in {"VERSION", "CHANGELOG.md"}:
+            continue
+        if any(part in {"output", "release", "build", "dist"} for part in path.parts):
+            continue
+        if path.suffix.lower() not in {".md", ".yaml", ".yml", ".json", ".py", ".txt", ".html", ".css"}:
+            continue
+        try:
+            source_text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        if current_tag in source_text:
+            duplicated_tag_files.append(str(path.relative_to(root)))
+    if duplicated_tag_files:
+        fail(
+            errors,
+            "Aktuell releaseversion är hårdkodad utanför VERSION/CHANGELOG: "
+            + ", ".join(duplicated_tag_files),
+        )
 
     # Printables are source-of-truth for preview/release publishing.
     printables = release_cfg.get("printables") or []
@@ -147,8 +187,6 @@ def main() -> int:
         sources.add(source)
         if not name.lower().endswith(".pdf"):
             fail(errors, f"Releasefil är inte PDF: {name}")
-        if f"v{version}" not in Path(source).name:
-            fail(errors, f"Printkälla har fel version: {source}")
 
     required_print_ids = {
         "board_standard",
@@ -178,6 +216,9 @@ def main() -> int:
         fail(errors, "Rutt-ID skiljer sig mellan board.yaml och board-layout.yaml.")
 
     # Card/icon coherence.
+    # The four approved PNG files are versioned production assets. The
+    # original generated 2x2 sheet is retained as provenance/source material,
+    # while normal builds consume the approved PNGs directly.
     cards = load_yaml(root / "data/cards.yaml")["route_cards"]
     icon_cfg = load_yaml(root / "data/trade-seal-icons.yaml")
     icon_paths = {
@@ -189,10 +230,24 @@ def main() -> int:
         if typ in {"blå", "röd", "grön", "lila"}:
             if not icon_image:
                 fail(errors, f"{card['id']} saknar icon_image.")
-            elif not (root / icon_image).exists():
-                fail(errors, f"{card['id']} refererar saknad ikon: {icon_image}")
             elif icon_paths.get(typ) != icon_image:
                 fail(errors, f"{card['id']} och trade-seal-icons.yaml är osynkroniserade.")
+            elif not str(icon_image).startswith("assets/icons/trade-seals/"):
+                fail(errors, f"{card['id']} har oväntad ikonplats: {icon_image}")
+            else:
+                icon_file = root / icon_image
+                if not icon_file.exists():
+                    fail(errors, f"{card['id']} refererar saknad godkänd PNG: {icon_image}")
+                else:
+                    try:
+                        with Image.open(icon_file) as image:
+                            if image.format != "PNG":
+                                fail(errors, f"{icon_image} är inte en PNG-fil.")
+                            if image.width < 256 or image.height < 256:
+                                fail(errors, f"{icon_image} har oväntat låg upplösning.")
+                            image.verify()
+                    except Exception as exc:
+                        fail(errors, f"{icon_image} kan inte läsas: {exc}")
 
     # Check master background is readable.
     bg = root / "assets/backgrounds/master/board-background-master-v0.24.png"
@@ -219,14 +274,16 @@ def main() -> int:
         except Exception as exc:
             fail(errors, f"{validator} kunde inte köras: {exc}")
 
-    # Only one release directory may be committed.
-    release_root = root / "release"
-    if release_root.exists():
-        release_dirs = sorted(p.name for p in release_root.iterdir() if p.is_dir())
-        if len(release_dirs) > 1:
-            fail(errors, "Fler än en releasekatalog finns: " + ", ".join(release_dirs))
-        if release_dirs and release_dirs[0] != f"v{version}":
-            fail(errors, f"Releasekatalog {release_dirs[0]} matchar inte v{version}.")
+    # Repository hygiene.
+    gitignore = (root / ".gitignore").read_text(encoding="utf-8")
+    for required_ignore in (
+        "/output/",
+        "/release/",
+        "/build/",
+    ):
+        if required_ignore not in gitignore:
+            fail(errors, f".gitignore saknar {required_ignore}")
+
 
     if errors:
         print(f"\nValidation failed: {len(errors)} error(s).", file=sys.stderr)

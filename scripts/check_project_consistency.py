@@ -3,7 +3,7 @@ from pathlib import Path
 import json, re, sys, yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "2.1"
+PROJECT_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
 COLORS = {"blå", "röd", "grön", "lila"}
 WILD = "handelsvind"
 
@@ -24,23 +24,7 @@ print_layouts=y("data/print-layouts.yaml")
 book=(ROOT/"docs/rulebook.md").read_text(encoding="utf-8")
 readme=(ROOT/"README.md").read_text(encoding="utf-8")
 
-# Version alignment for current sources.
-versions={
-    "board": str(board["version"]),
-    "board_layout": str(layout["version"]),
-    "rules": str(rules["version"]),
-    "game": str(game["version"]),
-    "theme": str(theme["version"]),
-    "strategies": str(strategies["version"]),
-    "print_layouts": str(print_layouts["version"]),
-}
-for name,value in versions.items():
-    if value != VERSION:
-        errors.append(f"{name}: version {value}, expected {VERSION}")
-if f"v{VERSION}" not in book:
-    errors.append("rulebook version heading is not current")
-if f"v{VERSION}" not in readme:
-    errors.append("README version is not current")
+# Project release version lives only in VERSION; content sources are intentionally version-free.
 
 # Ports and routes.
 board_ports={p["name"] for p in board["ports"]}
@@ -73,7 +57,7 @@ for c in cards:
         errors.append(f'{c["id"]}: unexpected card name {c["name"]}')
 
 # Rules.
-if rules["ruleset_id"] != "handelsvindar_core_v2_1":
+if rules["ruleset_id"] != "handelsvindar_core":
     errors.append("ruleset_id is stale")
 if "requires_matching_route_type" in rules["build_route"]:
     errors.append("legacy requires_matching_route_type remains")
@@ -105,7 +89,7 @@ for card in cards:
         errors.append(f'wrong or missing symbol on {card["id"]}')
     if card["type"]!="handelsvind" and "handelssigill" in card["name"].lower():
         errors.append(f'route card title not shortened: {card["id"]}')
-qr_svg=ROOT/"output/svg/player-aids/quick-reference-a6-v2.1.svg"
+qr_svg=ROOT/"output/svg/player-aids/quick-reference-a6.svg"
 if not qr_svg.exists() or "BYGGPOÄNG" not in qr_svg.read_text(encoding="utf-8"):
     errors.append("quick reference lacks build points")
 
@@ -138,16 +122,11 @@ for pat in legacy_patterns:
     if re.search(pat,current_text,re.I):
         errors.append(f"legacy current-doc term found: {pat}")
 
-# Board SVGs intentionally have no visible version text.
-# Verify the generated filename instead.
+# Generated working filenames are intentionally version-free.
 svg_dir=ROOT/"output/svg/board"
-for svg in svg_dir.glob("*.svg"):
-    if f"v{VERSION}" not in svg.name:
-        errors.append(f"{svg.name}: stale version filename")
-    
 
 # Integrated route-cost layout.
-standard_svg=svg_dir/f"board-a4-standard-v{VERSION}.svg"
+standard_svg=svg_dir/"board-a4-standard.svg"
 if standard_svg.exists():
     board_svg=standard_svg.read_text(encoding="utf-8")
     expected_slots=sum(int(route["cost"]) for route in board["connections"])
@@ -171,6 +150,6 @@ if standard_svg.exists():
             f'!= {len(board["connections"])}'
         )
 
-result={"version":VERSION,"errors":errors,"warnings":warnings,"count":len(errors)}
+result={"version":PROJECT_VERSION,"errors":errors,"warnings":warnings,"count":len(errors)}
 print(json.dumps(result,ensure_ascii=False,indent=2))
 sys.exit(1 if errors else 0)
