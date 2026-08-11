@@ -68,9 +68,11 @@ def main() -> int:
     finally:
         sys.argv = old_argv
 
-    # Rebuild derived icon assets and every printable artifact from source.
+    # Build printable artifacts from the approved, versioned production
+    # assets. build_trade_seal_icons.py is deliberately NOT run here because
+    # it is a manual asset-preparation tool and must not overwrite approved
+    # PNG assets during preview/release builds.
     for script_name in (
-        "build_trade_seal_icons.py",
         "build_all.py",
         "check_project_consistency.py",
     ):

@@ -1,6 +1,6 @@
 rules:
-  version: '2.1'
-  ruleset_id: handelsvindar_core_v2_1
+  version: '2.3'
+  ruleset_id: handelsvindar_core_v2_3
   players:
     min: 2
     max: 4

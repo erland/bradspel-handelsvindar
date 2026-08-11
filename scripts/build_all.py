@@ -13,7 +13,7 @@ HTML = None
 CSS = None  # Optional for board-only build
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "v2.1"
+VERSION = "v2.3"
 OUT_SVG = ROOT / "output" / "svg"
 OUT_PDF = ROOT / "output" / "pdf"
 OUT_PREVIEW = ROOT / "output" / "preview"

@@ -1,5 +1,5 @@
 board_layout:
-  version: '2.1'
+  version: '2.3'
   page:
     width_mm: 297
     height_mm: 210

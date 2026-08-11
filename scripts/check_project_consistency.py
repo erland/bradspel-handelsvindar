@@ -3,7 +3,7 @@ from pathlib import Path
 import json, re, sys, yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "2.1"
+VERSION = "2.3"
 COLORS = {"blå", "röd", "grön", "lila"}
 WILD = "handelsvind"
 
@@ -73,7 +73,7 @@ for c in cards:
         errors.append(f'{c["id"]}: unexpected card name {c["name"]}')
 
 # Rules.
-if rules["ruleset_id"] != "handelsvindar_core_v2_1":
+if rules["ruleset_id"] != "handelsvindar_core_v2_3":
     errors.append("ruleset_id is stale")
 if "requires_matching_route_type" in rules["build_route"]:
     errors.append("legacy requires_matching_route_type remains")
@@ -105,7 +105,7 @@ for card in cards:
         errors.append(f'wrong or missing symbol on {card["id"]}')
     if card["type"]!="handelsvind" and "handelssigill" in card["name"].lower():
         errors.append(f'route card title not shortened: {card["id"]}')
-qr_svg=ROOT/"output/svg/player-aids/quick-reference-a6-v2.1.svg"
+qr_svg=ROOT/"output/svg/player-aids/quick-reference-a6-v2.3.svg"
 if not qr_svg.exists() or "BYGGPOÄNG" not in qr_svg.read_text(encoding="utf-8"):
     errors.append("quick reference lacks build points")
 

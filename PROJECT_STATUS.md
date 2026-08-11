@@ -2,25 +2,23 @@
 
 ## Version
 
-v2.1
+v2.3
 
 ## Status
 
-Blindtestredo print-and-play med automatiserad GitHub-validering, preview-build och release-publicering.
+Källrent GitHub-projekt där godkända handelssigill-PNG:er behandlas som versionshanterade produktionsassets.
 
 ## Klart
 
-- `.github/` ligger i projektroten bredvid `README.md`
-- snabb Validate-workflow för PR och push till `main`
-- manuell Build Print Preview-workflow
-- taggstyrd Release Print-and-Play-workflow
-- `data/release.yaml` definierar exakt vilka printfiler som är kanoniska
-- reproducerbara Python-beroenden är versionslåsta
-- lokal validator kontrollerar filer, YAML, versioner, speldata, ikoner och printmanifest
-- preview/release byggs från källfiler och verifierar varje PDF
-- GitHub Release får separata PDF-assets och en komplett print-and-play-zip
-- äldre releasekataloger rensas; endast v2.1 behålls i projektzippen
+- de fyra godkända trade-seal-PNG:erna är återställda och checkas in
+- `.gitignore` ignorerar inte längre trade-seal-PNG:erna
+- validatorn kräver att alla fyra PNG-filer finns och går att läsa
+- preview/release använder PNG-filerna direkt
+- `build_trade_seal_icons.py` körs inte automatiskt i CI eller release
+- AI-källarket behålls som käll-/proveniensmaterial
+- `output/`, `release/`, `build/` och `dist/` är fortsatt genererade och ignorerade
+- spelregler, karta och balans är oförändrade
 
 ## Nästa steg
 
-Lägg projektet i ett GitHub-repository, pusha till `main` och kör `Build Print Preview` manuellt. När previewn är godkänd skapas taggen `v2.1`.
+Pusha v2.3 och kontrollera att Validate, Build Print Preview och en taggad release fungerar med de incheckade produktionsassetsen.

@@ -1,4 +1,4 @@
-version: '2.1'
+version: '2.3'
 pipeline: YAML/Markdown + templates -> SVG/HTML -> PDF
 active_card_profile: compact_4x4
 card_profiles:
@@ -33,11 +33,11 @@ player_aids:
 outputs:
   pdf_root: output/pdf
   svg_root: output/svg
-  route_cards: output/pdf/cards/route-cards-compact-4x4-v2.1.pdf
-  delivery_cards: output/pdf/cards/delivery-cards-compact-4x4-v2.1.pdf
-  quick_reference_a6: output/pdf/player-aids/quick-reference-a6-v2.1.pdf
-  quick_reference_a4_4up: output/pdf/player-aids/quick-reference-a4-4up-v2.1.pdf
-  rulebook: output/pdf/docs/rulebook-v2.1.pdf
-  board_standard: output/pdf/board/board-a4-standard-v2.1.pdf
-  board_ink_friendly: output/pdf/board/board-a4-ink-friendly-v2.1.pdf
-  markers: output/pdf/components/markers-a4-v2.1.pdf
+  route_cards: output/pdf/cards/route-cards-compact-4x4-v2.3.pdf
+  delivery_cards: output/pdf/cards/delivery-cards-compact-4x4-v2.3.pdf
+  quick_reference_a6: output/pdf/player-aids/quick-reference-a6-v2.3.pdf
+  quick_reference_a4_4up: output/pdf/player-aids/quick-reference-a4-4up-v2.3.pdf
+  rulebook: output/pdf/docs/rulebook-v2.3.pdf
+  board_standard: output/pdf/board/board-a4-standard-v2.3.pdf
+  board_ink_friendly: output/pdf/board/board-a4-ink-friendly-v2.3.pdf
+  markers: output/pdf/components/markers-a4-v2.3.pdf

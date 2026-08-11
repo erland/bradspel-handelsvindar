@@ -52,4 +52,4 @@ jobs:
         run: python -m pip install --disable-pip-version-check -r requirements-validation.txt
 
       - name: Validate Handelsvindar
-        run: python scripts/validate_project.py .
+        run: python scripts/validate_project.py . --repository-clean

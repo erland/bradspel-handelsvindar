@@ -17,6 +17,7 @@ REQUIRED_PATHS = (
     "README.md",
     "PROJECT_STATUS.md",
     "CHANGELOG.md",
+    ".gitignore",
     "data/board.yaml",
     "data/board-layout.yaml",
     "data/board-theme.yaml",
@@ -33,6 +34,10 @@ REQUIRED_PATHS = (
     "scripts/validate_rules.py",
     "scripts/check_rulebook_consistency.py",
     "assets/backgrounds/master/board-background-master-v0.24.png",
+    "assets/icons/trade-seals/blue-trade-seal.png",
+    "assets/icons/trade-seals/red-trade-seal.png",
+    "assets/icons/trade-seals/green-trade-seal.png",
+    "assets/icons/trade-seals/purple-trade-seal.png",
 )
 
 SOURCE_VALIDATORS = (
@@ -66,12 +71,28 @@ def main() -> int:
     parser.add_argument(
         "--expected-tag",
         default="",
-        help="Optional Git tag, e.g. v2.1. Must match the project version.",
+        help="Optional Git tag, e.g. v2.3. Must match the project version.",
+    )
+    parser.add_argument(
+        "--repository-clean",
+        action="store_true",
+        help="Fail if generated output/release files are present in the source tree.",
     )
     args = parser.parse_args()
 
     root = Path(args.root).resolve()
     errors: list[str] = []
+
+    # Check the checkout before any validator/build step is allowed to create
+    # generated files of its own.
+    if args.repository_clean:
+        for generated_dir in ("output", "release", "build", "dist"):
+            folder = root / generated_dir
+            if folder.exists() and any(p.is_file() for p in folder.rglob("*")):
+                fail(
+                    errors,
+                    f"Genererade filer finns i {generated_dir}/ i källcheckouten.",
+                )
 
     for rel in REQUIRED_PATHS:
         if not (root / rel).exists():
@@ -178,6 +199,9 @@ def main() -> int:
         fail(errors, "Rutt-ID skiljer sig mellan board.yaml och board-layout.yaml.")
 
     # Card/icon coherence.
+    # The four approved PNG files are versioned production assets. The
+    # original generated 2x2 sheet is retained as provenance/source material,
+    # while normal builds consume the approved PNGs directly.
     cards = load_yaml(root / "data/cards.yaml")["route_cards"]
     icon_cfg = load_yaml(root / "data/trade-seal-icons.yaml")
     icon_paths = {
@@ -189,10 +213,24 @@ def main() -> int:
         if typ in {"blå", "röd", "grön", "lila"}:
             if not icon_image:
                 fail(errors, f"{card['id']} saknar icon_image.")
-            elif not (root / icon_image).exists():
-                fail(errors, f"{card['id']} refererar saknad ikon: {icon_image}")
             elif icon_paths.get(typ) != icon_image:
                 fail(errors, f"{card['id']} och trade-seal-icons.yaml är osynkroniserade.")
+            elif not str(icon_image).startswith("assets/icons/trade-seals/"):
+                fail(errors, f"{card['id']} har oväntad ikonplats: {icon_image}")
+            else:
+                icon_file = root / icon_image
+                if not icon_file.exists():
+                    fail(errors, f"{card['id']} refererar saknad godkänd PNG: {icon_image}")
+                else:
+                    try:
+                        with Image.open(icon_file) as image:
+                            if image.format != "PNG":
+                                fail(errors, f"{icon_image} är inte en PNG-fil.")
+                            if image.width < 256 or image.height < 256:
+                                fail(errors, f"{icon_image} har oväntat låg upplösning.")
+                            image.verify()
+                    except Exception as exc:
+                        fail(errors, f"{icon_image} kan inte läsas: {exc}")
 
     # Check master background is readable.
     bg = root / "assets/backgrounds/master/board-background-master-v0.24.png"
@@ -219,14 +257,16 @@ def main() -> int:
         except Exception as exc:
             fail(errors, f"{validator} kunde inte köras: {exc}")
 
-    # Only one release directory may be committed.
-    release_root = root / "release"
-    if release_root.exists():
-        release_dirs = sorted(p.name for p in release_root.iterdir() if p.is_dir())
-        if len(release_dirs) > 1:
-            fail(errors, "Fler än en releasekatalog finns: " + ", ".join(release_dirs))
-        if release_dirs and release_dirs[0] != f"v{version}":
-            fail(errors, f"Releasekatalog {release_dirs[0]} matchar inte v{version}.")
+    # Repository hygiene.
+    gitignore = (root / ".gitignore").read_text(encoding="utf-8")
+    for required_ignore in (
+        "/output/",
+        "/release/",
+        "/build/",
+    ):
+        if required_ignore not in gitignore:
+            fail(errors, f".gitignore saknar {required_ignore}")
+
 
     if errors:
         print(f"\nValidation failed: {len(errors)} error(s).", file=sys.stderr)

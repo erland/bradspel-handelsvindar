@@ -1,5 +1,5 @@
 board:
-  version: '2.1'
+  version: '2.3'
   ports:
   - id: P01
     name: Nordhamn

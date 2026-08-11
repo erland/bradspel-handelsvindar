@@ -1,4 +1,4 @@
-# GitHub Actions och print-publicering v2.1
+# GitHub Actions och print-publicering v2.3
 
 `.github/` ligger i repositoryts rot på samma nivå som `README.md`.
 
@@ -38,7 +38,7 @@ Workflowen:
 
 1. installerar de låsta byggberoendena
 2. validerar projektet
-3. regenererar handelssigill-ikoner från källarket
+3. använder de incheckade, godkända handelssigill-PNG:erna
 4. bygger samtliga printfiler
 5. kör full projektkonsistens efter bygget
 6. verifierar att varje PDF går att läsa och har minst en sida
@@ -58,8 +58,8 @@ Fil:
 Triggas av en Git-tag som börjar med `v`, exempelvis:
 
 ```bash
-git tag v2.1
-git push origin v2.1
+git tag v2.3
+git push origin v2.3
 ```
 
 Taggen måste exakt matcha versionen i `data/release.yaml`.
@@ -69,7 +69,7 @@ Workflowen bygger allt från källorna och publicerar:
 - varje kanonisk PDF som separat GitHub Release-asset
 - `PRINT_MANIFEST.json`
 - `README.txt`
-- en komplett `handelsvindar-print-and-play-v2.1.zip`
+- en komplett `handelsvindar-print-and-play-v2.3.zip`
 
 Om releasen redan finns uppdateras filerna med `--clobber`.
 
@@ -103,9 +103,30 @@ python scripts/build_print_package.py --output-dir build/preview
 Test av releasepaket:
 
 ```bash
-python scripts/build_print_package.py   --output-dir build/release   --expected-tag v2.1   --package
+python scripts/build_print_package.py   --output-dir build/release   --expected-tag v2.3   --package
 ```
 
 ## Versionsprincip
 
 Vid en ny release ska versionen höjas i projektets strukturerade källor och i `data/release.yaml`. `scripts/validate_project.py` stoppar releasen om Git-taggen inte matchar.
+
+## Assetprincip
+
+De fyra godkända PNG-filerna under `assets/icons/trade-seals/` är produktionsassets och ska checkas in.
+
+Det ursprungliga 2x2-arket under `assets/icons/source/` behålls som käll-/proveniensmaterial.
+
+`scripts/build_trade_seal_icons.py` används endast manuellt om sigill-assets behöver byggas om. Preview och release kör inte det skriptet och skriver därför inte över godkänd grafik.
+
+## Vad som inte ska checkas in
+
+Följande är genererat och ligger i `.gitignore`:
+
+```text
+output/
+release/
+build/
+dist/
+```
+
+Preview och release använder en ren checkout och bygger dessa artefakter från de incheckade källorna och godkända assetsen.

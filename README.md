@@ -2,59 +2,65 @@
 
 ## Version
 
-v2.1 - blindtestredo print-and-play med GitHub Actions för validering, preview och release.
+v2.3 - källren print-and-play med godkända handelssigill-PNG som versionshanterade produktionsassets.
 
-## Spelidé
+## Princip
 
-Du leder ett handelsgille i ett växande örike. Samla handelssigill, etablera handelsleder och använd ditt eget nätverk för att leverera varor. Flest poäng vinner.
+Repositoryt innehåller källor och **godkända produktionsassets**, men inte genererade PDF-/SVG-/releaseprodukter.
 
-## Projektstruktur
+Versionshanteras:
+
+- `data/`
+- `docs/`
+- `templates/`
+- `scripts/`
+- masterbakgrunden
+- AI-källarket för handelssigillen
+- de fyra godkända PNG-filerna i `assets/icons/trade-seals/`
+
+Versionshanteras inte:
+
+- `output/`
+- `release/`
+- lokala `build/`- och `dist/`-mappar
+
+## Handelssigill
+
+De fyra PNG-filerna:
 
 ```text
-README.md
-.github/
-  workflows/
-    01-validate.yml
-    02-build-preview.yml
-    03-release.yml
-assets/
-data/
-docs/
-schemas/
-scripts/
-templates/
-output/
-release/
+assets/icons/trade-seals/blue-trade-seal.png
+assets/icons/trade-seals/red-trade-seal.png
+assets/icons/trade-seals/green-trade-seal.png
+assets/icons/trade-seals/purple-trade-seal.png
 ```
 
-`.github/` ligger alltså på samma nivå som `README.md`.
+är godkända produktionsassets och ska ligga kvar i Git.
+
+`assets/icons/source/trade-seals-generated-sheet-v1.1.png` behålls som ursprungligt AI-genererat källark.
+
+`scripts/build_trade_seal_icons.py` är ett manuellt asset-verktyg. Det körs **inte** automatiskt av preview- eller releasebyggen eftersom normala byggen inte ska skriva över godkända assets.
 
 ## GitHub Actions
 
-- **Validate** kör snabb käll- och konsistensvalidering på PR och push till `main`.
-- **Build Print Preview** startas manuellt och skapar ett artifact med alla PDF-filer som ska kunna skrivas ut.
-- **Release Print-and-Play** triggas av taggen `vX.Y` och publicerar separata PDF-assets plus en komplett print-and-play-zip som GitHub Release.
+- **Validate** kontrollerar källor, regler, versioner och de godkända PNG-assetsen.
+- **Build Print Preview** bygger samtliga printfiler från incheckade källor/assets och laddar upp dem som artifact.
+- **Release Print-and-Play** bygger från den taggade revisionen och publicerar PDF-filer plus en print-and-play-zip på GitHub Release.
 
-Se `docs/github-actions.md`.
+## Lokalt
 
-## Kanoniskt printpaket
-
-`data/release.yaml` anger exakt vilka PDF-filer som ska ingå i preview och release.
-
-## Lokalt bygge
-
-Validering:
+Källren validering:
 
 ```bash
 python -m pip install -r requirements-validation.txt
-python scripts/validate_project.py .
+python scripts/validate_project.py . --repository-clean
 ```
 
-Komplett printbygge:
+Komplett preview-build:
 
 ```bash
 python -m pip install -r requirements-build.txt
 python scripts/build_print_package.py --output-dir build/preview
 ```
 
-PDF är rekommenderat utskriftsformat. YAML, Markdown, mallar, script och källgrafik är projektets källor.
+Efter ett lokalt bygge kan `output/`, `build/` och `release/` raderas. De fyra godkända handelssigill-PNG:erna ska däremot behållas.
