@@ -1,24 +1,22 @@
 # Projektstatus
 
-## Version
-
-v2.3
-
 ## Status
 
-Källrent GitHub-projekt där godkända handelssigill-PNG:er behandlas som versionshanterade produktionsassets.
+Källrent GitHub-projekt med en enda kanonisk projektversion i `VERSION`.
 
 ## Klart
 
-- de fyra godkända trade-seal-PNG:erna är återställda och checkas in
-- `.gitignore` ignorerar inte längre trade-seal-PNG:erna
-- validatorn kräver att alla fyra PNG-filer finns och går att läsa
-- preview/release använder PNG-filerna direkt
-- `build_trade_seal_icons.py` körs inte automatiskt i CI eller release
-- AI-källarket behålls som käll-/proveniensmaterial
-- `output/`, `release/`, `build/` och `dist/` är fortsatt genererade och ignorerade
-- spelregler, karta och balans är oförändrade
+- projektversionen är borttagen från speldata, layoutdata, regler och dokumentrubriker
+- `VERSION` är enda kanoniska källa för aktuell releaseversion
+- `ruleset_id` är stabilt och inte kopplat till releaseversion
+- lokala outputfilnamn är versionsfria
+- `data/release.yaml` och `data/print-layouts.yaml` är versionsfria
+- regelbokens Markdown är versionsfri; PDF-generatorn kan lägga in releaseversion vid build
+- Git-taggen kontrolleras mot `VERSION`
+- release-zippen versionsmärks automatiskt
+- godkända handelssigill-PNG:er ligger kvar som produktionsassets
+- `output/`, `release/`, `build/` och `dist/` är genererade och ignorerade
 
 ## Nästa steg
 
-Pusha v2.3 och kontrollera att Validate, Build Print Preview och en taggad release fungerar med de incheckade produktionsassetsen.
+Pusha ändringen och kontrollera att en framtida versionshöjning i normalfallet bara kräver en ändring i `VERSION`, en changelogpost och en ny Git-tagg.

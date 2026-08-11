@@ -89,7 +89,7 @@ def main() -> int:
             sys.argv = old_argv
 
     cfg = yaml.safe_load((root / "data/release.yaml").read_text(encoding="utf-8"))
-    version = str(cfg["version"])
+    version = (root / "VERSION").read_text(encoding="utf-8").strip()
     printables = cfg["printables"]
 
     # Clean output directory to avoid stale release assets.

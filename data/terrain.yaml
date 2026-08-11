@@ -1,5 +1,5 @@
 terrain:
-  version: '0.30'
+  data_revision: '0.30'
   model: legacy_visual_support_only
   description: Legacy visual support data. Route colors no longer imply land or water
     terrain.

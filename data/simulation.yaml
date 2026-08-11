@@ -1,5 +1,5 @@
 simulation:
-  version: '0.30'
+  config_revision: '0.30'
   seed: 9001
   games: 250
   player_counts:

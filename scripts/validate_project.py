@@ -15,6 +15,7 @@ from PIL import Image
 
 REQUIRED_PATHS = (
     "README.md",
+    "VERSION",
     "PROJECT_STATUS.md",
     "CHANGELOG.md",
     ".gitignore",
@@ -46,14 +47,6 @@ SOURCE_VALIDATORS = (
     "scripts/check_board_layout.py",
 )
 
-VERSIONED_SOURCES = {
-    "board": ("data/board.yaml", "board"),
-    "board_layout": ("data/board-layout.yaml", "board_layout"),
-    "board_theme": ("data/board-theme.yaml", "board_theme"),
-    "game": ("data/game.yaml", "game"),
-    "rules": ("data/rules.yaml", "rules"),
-    "strategies": ("data/strategies.yaml", "strategic_simulation"),
-}
 
 
 def fail(errors: list[str], message: str) -> None:
@@ -71,7 +64,7 @@ def main() -> int:
     parser.add_argument(
         "--expected-tag",
         default="",
-        help="Optional Git tag, e.g. v2.3. Must match the project version.",
+        help="Optional Git tag, e.g. vX.Y. Must match VERSION.",
     )
     parser.add_argument(
         "--repository-clean",
@@ -112,7 +105,7 @@ def main() -> int:
         return 1
 
     release_cfg = load_yaml(root / "data/release.yaml")
-    version = str(release_cfg.get("version", ""))
+    version = (root / "VERSION").read_text(encoding="utf-8").strip()
     if not re.fullmatch(r"\d+\.\d+(?:\.\d+)?(?:-[0-9A-Za-z.-]+)?", version):
         fail(errors, f"Ogiltigt release-versionformat: {version!r}")
 
@@ -124,23 +117,49 @@ def main() -> int:
                 f"Git-taggen {args.expected_tag!r} matchar inte projektversionen {expected!r}.",
             )
 
-    # Version alignment.
-    for label, (rel, key) in VERSIONED_SOURCES.items():
-        obj = load_yaml(root / rel)[key]
-        found = str(obj.get("version", ""))
-        if found != version:
-            fail(errors, f"{label}: version {found!r}, väntat {version!r}")
+    # Release version belongs only in VERSION. Content/config sources must not
+    # carry a duplicate project release version.
+    version_keys = []
+    for path in sorted((root / "data").rglob("*.yaml")):
+        rel = str(path.relative_to(root))
+        raw = load_yaml(path)
+        def walk(obj, node_path=""):
+            if isinstance(obj, dict):
+                for key, value in obj.items():
+                    here = f"{node_path}.{key}" if node_path else str(key)
+                    if key == "version":
+                        version_keys.append(f"{rel}:{here}")
+                    walk(value, here)
+            elif isinstance(obj, list):
+                for idx, value in enumerate(obj):
+                    walk(value, f"{node_path}[{idx}]")
+        walk(raw)
+    if version_keys:
+        fail(errors, "Projektversion ska inte dupliceras i YAML: " + ", ".join(version_keys))
 
-    print_layouts = load_yaml(root / "data/print-layouts.yaml")
-    if str(print_layouts.get("version", "")) != version:
-        fail(errors, "data/print-layouts.yaml har fel version.")
-
-    rulebook = (root / "docs/rulebook.md").read_text(encoding="utf-8")
-    readme = (root / "README.md").read_text(encoding="utf-8")
-    if f"v{version}" not in rulebook:
-        fail(errors, "Regelboken saknar aktuell version i rubriken.")
-    if f"v{version}" not in readme:
-        fail(errors, "README saknar aktuell version.")
+    current_tag = f"v{version}"
+    duplicated_tag_files = []
+    for path in sorted(root.rglob("*")):
+        if not path.is_file():
+            continue
+        if path.name in {"VERSION", "CHANGELOG.md"}:
+            continue
+        if any(part in {"output", "release", "build", "dist"} for part in path.parts):
+            continue
+        if path.suffix.lower() not in {".md", ".yaml", ".yml", ".json", ".py", ".txt", ".html", ".css"}:
+            continue
+        try:
+            source_text = path.read_text(encoding="utf-8")
+        except UnicodeDecodeError:
+            continue
+        if current_tag in source_text:
+            duplicated_tag_files.append(str(path.relative_to(root)))
+    if duplicated_tag_files:
+        fail(
+            errors,
+            "Aktuell releaseversion är hårdkodad utanför VERSION/CHANGELOG: "
+            + ", ".join(duplicated_tag_files),
+        )
 
     # Printables are source-of-truth for preview/release publishing.
     printables = release_cfg.get("printables") or []
@@ -168,8 +187,6 @@ def main() -> int:
         sources.add(source)
         if not name.lower().endswith(".pdf"):
             fail(errors, f"Releasefil är inte PDF: {name}")
-        if f"v{version}" not in Path(source).name:
-            fail(errors, f"Printkälla har fel version: {source}")
 
     required_print_ids = {
         "board_standard",

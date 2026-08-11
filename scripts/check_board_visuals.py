@@ -50,5 +50,5 @@ for icon in icons:
     if not (ROOT/"assets"/"icons"/icon).exists():
         warnings.append(f"missing icon: {icon}")
 
-print({"version":layout["version"],"warnings":warnings,"count":len(warnings)})
+print({"version":(ROOT/"VERSION").read_text(encoding="utf-8").strip(),"warnings":warnings,"count":len(warnings)})
 sys.exit(1 if warnings else 0)

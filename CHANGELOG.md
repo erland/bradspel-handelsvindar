@@ -1,5 +1,17 @@
 # Changelog
 
+## v2.4
+
+- införde `VERSION` som enda kanoniska projektversion
+- tog bort releaseversion från YAML-källor och löpande Markdown
+- gjorde genererade outputfilnamn versionsfria
+- gjorde `ruleset_id` stabilt (`handelsvindar_core`)
+- bygg- och releaseverktyg läser version från `VERSION`
+- Git-taggen valideras mot `VERSION`
+- release-zippen behåller versionsnummer utan att sprida det i källfiler
+- spelregler, karta, grafik och balans är oförändrade
+
+
 ## v2.3
 
 - återställde de fyra godkända handelssigill-PNG:erna som versionshanterade produktionsassets

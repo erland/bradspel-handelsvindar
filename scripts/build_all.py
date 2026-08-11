@@ -13,7 +13,8 @@ HTML = None
 CSS = None  # Optional for board-only build
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = "v2.3"
+PROJECT_VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
+VERSION_TAG = f"v{PROJECT_VERSION}"
 OUT_SVG = ROOT / "output" / "svg"
 OUT_PDF = ROOT / "output" / "pdf"
 OUT_PREVIEW = ROOT / "output" / "preview"
@@ -433,7 +434,7 @@ def _build_board_variant(theme_name):
         "LABELS":"\n".join(labels),"LEGEND":"\n".join(legend),
         "TITLE":"\n".join(title),"FRAME":"\n".join(frame)
     })
-    stem=f"board-a4-{theme_name.replace('_','-')}-{VERSION}"
+    stem=f"board-a4-{theme_name.replace('_','-')}"
     svg_path=SVG_BOARD/f"{stem}.svg"
     pdf_path=PDF_BOARD/f"{stem}.pdf"
     png_path=OUT_PREVIEW/f"{stem}.png"
@@ -622,7 +623,7 @@ def quick_reference_inner(offset_x=0, offset_y=0):
         f'<rect x="{ox+3}" y="{oy+3}" width="99" height="142" rx="3" fill="#FFFDF8" stroke="#263A43" stroke-width="0.6"/>',
         f'<rect x="{ox+3}" y="{oy+3}" width="99" height="21" rx="3" fill="#1F596E"/>',
         f'<text x="{ox+9}" y="{oy+13}" font-family="DejaVu Sans" font-size="6.7" font-weight="700" fill="#FFF">HANDELSVINDAR</text>',
-        f'<text x="{ox+9}" y="{oy+19}" font-family="DejaVu Sans" font-size="3.0" fill="#DDEBF0">SNABBREFERENS {VERSION}</text>',
+        f'<text x="{ox+9}" y="{oy+19}" font-family="DejaVu Sans" font-size="3.0" fill="#DDEBF0">SNABBREFERENS {VERSION_TAG}</text>',
     ]
     # Approved trade-seal illustrations.
     icon_items=[
@@ -662,9 +663,9 @@ def build_quick_reference():
     a6 += ['<rect width="105" height="148" fill="#F5F1E7"/>']
     a6 += quick_reference_inner()
     a6.append("</svg>")
-    a6_svg = SVG_AIDS/f"quick-reference-a6-{VERSION}.svg"
+    a6_svg = SVG_AIDS/"quick-reference-a6.svg"
     a6_svg.write_text("\n".join(a6), encoding="utf-8")
-    svg_to_pdf(a6_svg, PDF_AIDS/f"quick-reference-a6-{VERSION}.pdf")
+    svg_to_pdf(a6_svg, PDF_AIDS/"quick-reference-a6.pdf")
 
     # Four identical A6 aids imposed on one A4 sheet.
     a4 = ['<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297">',
@@ -676,9 +677,9 @@ def build_quick_reference():
         '<line x1="0" y1="148.5" x2="210" y2="148.5" stroke="#888" stroke-width="0.25" stroke-dasharray="2,2"/>',
         '</svg>'
     ]
-    a4_svg = SVG_AIDS/f"quick-reference-a4-4up-{VERSION}.svg"
+    a4_svg = SVG_AIDS/"quick-reference-a4-4up.svg"
     a4_svg.write_text("\n".join(a4), encoding="utf-8")
-    svg_to_pdf(a4_svg, PDF_AIDS/f"quick-reference-a4-4up-{VERSION}.pdf")
+    svg_to_pdf(a4_svg, PDF_AIDS/"quick-reference-a4-4up.pdf")
 
 
 def markdown_body(md):
@@ -732,7 +733,7 @@ def build_marker_sheet():
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{page_w}mm" height="{page_h}mm" viewBox="0 0 {page_w} {page_h}">',
         '<rect width="210" height="297" fill="#FFFFFF"/>',
         '<text x="15" y="18" font-family="DejaVu Sans" font-size="7" font-weight="700" fill="#26383E">HANDELSVINDAR - MARKÖRARK</text>',
-        f'<text x="15" y="25" font-family="DejaVu Sans" font-size="3" fill="#58686B">{VERSION}</text>',
+        f'<text x="15" y="25" font-family="DejaVu Sans" font-size="3" fill="#58686B">{VERSION_TAG}</text>',
         '<text x="15" y="36" font-family="DejaVu Sans" font-size="4" font-weight="700" fill="#26383E">EFTERFRÅGEMARKÖRER - 16 ST</text>',
     ]
     for i in range(16):
@@ -767,8 +768,8 @@ def build_marker_sheet():
         '<text x="15" y="281" font-family="DejaVu Sans" font-size="2.8" fill="#58686B">Klipp ut markörerna eller använd pärlor/kuber i motsvarande färger.</text>',
         '</svg>'
     ]
-    svg_path=SVG_COMPONENTS/f"markers-a4-{VERSION}.svg"
-    pdf_path=PDF_COMPONENTS/f"markers-a4-{VERSION}.pdf"
+    svg_path=SVG_COMPONENTS/"markers-a4.svg"
+    pdf_path=PDF_COMPONENTS/"markers-a4.pdf"
     svg_path.write_text("\n".join(parts),encoding="utf-8")
     svg_to_pdf(svg_path,pdf_path)
 
@@ -776,10 +777,10 @@ def build_marker_sheet():
 def build_rulebook():
     md = (ROOT/"docs"/"rulebook.md").read_text(encoding="utf-8")
     html_doc = render_template(ROOT/"templates"/"rulebook"/"rulebook.html", {
-        "CONTENT": markdown_body(md), "VERSION": VERSION
+        "CONTENT": markdown_body(md), "VERSION": VERSION_TAG
     })
     (OUT_PREVIEW/"rulebook.html").write_text(html_doc, encoding="utf-8")
-    out_pdf = PDF_DOCS/f"rulebook-{VERSION}.pdf"
+    out_pdf = PDF_DOCS/"rulebook.pdf"
     if HTML is not None and CSS is not None:
         css = (ROOT/"templates"/"rulebook"/"rulebook.css").read_text(encoding="utf-8")
         HTML(string=html_doc, base_url=str(ROOT)).write_pdf(
@@ -885,7 +886,7 @@ def build_rulebook():
         canvas.line(18*mm,14*mm,192*mm,14*mm)
         canvas.setFont("Helvetica",7.5)
         canvas.setFillColor(muted)
-        canvas.drawString(18*mm,9*mm,f"Handelsvindar {VERSION}")
+        canvas.drawString(18*mm,9*mm,f"Handelsvindar {VERSION_TAG}")
         canvas.drawRightString(192*mm,9*mm,f"Sida {doc.page}")
         canvas.restoreState()
 
@@ -893,7 +894,7 @@ def build_rulebook():
         str(out_pdf), pagesize=A4,
         rightMargin=18*mm,leftMargin=18*mm,
         topMargin=16*mm,bottomMargin=20*mm,
-        title=f"Handelsvindar {VERSION}",
+        title=f"Handelsvindar {VERSION_TAG}",
         author="Handelsvindar"
     )
     doc.build(story,onFirstPage=footer,onLaterPages=footer)
@@ -910,7 +911,7 @@ def build_trade_seal_icon_reference():
     parts=['<svg xmlns="http://www.w3.org/2000/svg" width="210mm" height="297mm" viewBox="0 0 210 297">',
            '<rect width="210" height="297" fill="#FFFDF8"/>',
            f'<text x="15" y="19" font-family="DejaVu Sans" font-size="8" font-weight="700" fill="#26383E">HANDELSVINDAR – HANDELSSIGILL</text>',
-           f'<text x="15" y="26" font-family="DejaVu Sans" font-size="3.2" fill="#58686B">{VERSION} / PNG-ikonreferens</text>']
+           f'<text x="15" y="26" font-family="DejaVu Sans" font-size="3.2" fill="#58686B">{VERSION_TAG} / PNG-ikonreferens</text>']
     positions=[(20,42),(110,42),(20,155),(110,155)]
     for (title,path,color),(x,y) in zip(items,positions):
         parts.append(f'<rect x="{x}" y="{y}" width="80" height="96" rx="4" fill="#FFFFFF" stroke="{color}" stroke-width="0.8"/>')
@@ -918,8 +919,8 @@ def build_trade_seal_icon_reference():
         parts.append(f'<text x="{x+40}" y="{y+73}" text-anchor="middle" font-family="DejaVu Sans" font-size="5" font-weight="700" fill="{color}">{title}</text>')
         parts.append(f'<text x="{x+40}" y="{y+82}" text-anchor="middle" font-family="DejaVu Sans" font-size="3" fill="#26383E">Transparent PNG, 512 × 512 px</text>')
     parts.append('</svg>')
-    svg_path=OUT_SVG/f"trade-seal-icons-reference-{VERSION}.svg"
-    pdf_path=OUT_PDF/f"trade-seal-icons-reference-{VERSION}.pdf"
+    svg_path=OUT_SVG/"trade-seal-icons-reference.svg"
+    pdf_path=OUT_PDF/"trade-seal-icons-reference.pdf"
     svg_path.write_text("\n".join(parts),encoding="utf-8")
     svg_to_pdf(svg_path,pdf_path)
 
@@ -932,7 +933,7 @@ def write_manifest():
             "pages": len(PdfReader(str(p)).pages),
         })
     manifest = {
-        "version": VERSION,
+        "version": PROJECT_VERSION,
         "build_flow": "YAML/Markdown + templates -> SVG/HTML -> PDF",
         "active_card_profile": "compact_4x4",
         "pdfs": pdfs,
@@ -946,8 +947,8 @@ def write_manifest():
 def main():
     clean_generated_outputs()
     build_board()
-    build_card_sheets(CARDS, f"route-cards-compact-4x4-{VERSION}", False)
-    build_card_sheets(DELIVERIES, f"delivery-cards-compact-4x4-{VERSION}", True)
+    build_card_sheets(CARDS, "route-cards-compact-4x4", False)
+    build_card_sheets(DELIVERIES, "delivery-cards-compact-4x4", True)
     build_quick_reference()
     build_marker_sheet()
     build_trade_seal_icon_reference()

@@ -9,7 +9,6 @@
     "rules": {
       "type": "object",
       "required": [
-        "version",
         "ruleset_id",
         "players",
         "setup",
@@ -23,9 +22,6 @@
         "tie_breakers"
       ],
       "properties": {
-        "version": {
-          "type": "string"
-        },
         "ruleset_id": {
           "type": "string"
         },

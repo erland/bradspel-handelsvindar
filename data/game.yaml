@@ -1,6 +1,5 @@
 game:
   title: Handelsvindar
-  version: '2.3'
   status: källren CI-release med godkända handelssigill-PNG som produktionsassets
   players:
     min: 2

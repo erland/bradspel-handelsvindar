@@ -197,7 +197,7 @@ def main():
     args=ap.parse_args()
     rng=random.Random(args.seed)
     counts=[args.players] if args.players else SIM["player_counts"]
-    report={"rules_version":RULES["version"],"agent":SIM["agent"],"warning":SIM["interpretation"],"by_player_count":{}}
+    report={"rules_version":(ROOT/"VERSION").read_text(encoding="utf-8").strip(),"agent":SIM["agent"],"warning":SIM["interpretation"],"by_player_count":{}}
     for pc in counts:
         results=[play_game(pc,rng) for _ in range(args.games)]
         report["by_player_count"][str(pc)]=summarize(results)

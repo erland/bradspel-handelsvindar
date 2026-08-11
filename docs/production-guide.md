@@ -1,8 +1,8 @@
-# Produktions- och buildguide v2.3
+# Produktions- och buildguide
 
 ## Rekommenderat utskriftspaket
 
-Använd PDF-filerna i `release/v2.3/print/`.
+Använd PDF-filerna som byggs av `scripts/build_print_package.py` eller publiceras i GitHub Release.
 
 ## Byggflöde
 
@@ -19,7 +19,7 @@ data/*.yaml + docs/*.md + templates/* + assets/*
               output/pdf
                 |
                 v
-          release/v2.3/print
+          GitHub Release / preview-artifact
 ```
 
 ## Kortprofiler

@@ -1,5 +1,4 @@
 board_theme:
-  version: '2.3'
   active: standard
   themes:
     standard:

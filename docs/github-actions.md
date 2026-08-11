@@ -1,4 +1,4 @@
-# GitHub Actions och print-publicering v2.3
+# GitHub Actions och print-publicering
 
 `.github/` ligger i repositoryts rot på samma nivå som `README.md`.
 
@@ -58,18 +58,18 @@ Fil:
 Triggas av en Git-tag som börjar med `v`, exempelvis:
 
 ```bash
-git tag v2.3
-git push origin v2.3
+git tag vX.Y
+git push origin vX.Y
 ```
 
-Taggen måste exakt matcha versionen i `data/release.yaml`.
+Taggen måste exakt matcha versionen i `VERSION`.
 
 Workflowen bygger allt från källorna och publicerar:
 
 - varje kanonisk PDF som separat GitHub Release-asset
 - `PRINT_MANIFEST.json`
 - `README.txt`
-- en komplett `handelsvindar-print-and-play-v2.3.zip`
+- en komplett `handelsvindar-print-and-play-vX.Y.zip`
 
 Om releasen redan finns uppdateras filerna med `--clobber`.
 
@@ -103,12 +103,12 @@ python scripts/build_print_package.py --output-dir build/preview
 Test av releasepaket:
 
 ```bash
-python scripts/build_print_package.py   --output-dir build/release   --expected-tag v2.3   --package
+python scripts/build_print_package.py   --output-dir build/release   --expected-tag vX.Y   --package
 ```
 
 ## Versionsprincip
 
-Vid en ny release ska versionen höjas i projektets strukturerade källor och i `data/release.yaml`. `scripts/validate_project.py` stoppar releasen om Git-taggen inte matchar.
+Vid en ny release ändras `VERSION` och `CHANGELOG.md`. `scripts/validate_project.py` stoppar releasen om Git-taggen inte matchar `VERSION`.
 
 ## Assetprincip
 

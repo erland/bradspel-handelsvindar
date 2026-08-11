@@ -1,8 +1,16 @@
 # Handelsvindar
 
-## Version
+## Versionsprincip
 
-v2.3 - källren print-and-play med godkända handelssigill-PNG som versionshanterade produktionsassets.
+Projektets aktuella releaseversion finns endast i filen:
+
+```text
+VERSION
+```
+
+Övriga källfiler ska normalt inte innehålla projektets releaseversion. Bygg- och releaseverktygen läser `VERSION` när versionsmetadata behövs.
+
+`CHANGELOG.md` innehåller naturligtvis historiska versionsrubriker. Se även `docs/versioning.md`.
 
 ## Princip
 
@@ -10,6 +18,7 @@ Repositoryt innehåller källor och **godkända produktionsassets**, men inte ge
 
 Versionshanteras:
 
+- `VERSION`
 - `data/`
 - `docs/`
 - `templates/`
@@ -26,26 +35,17 @@ Versionshanteras inte:
 
 ## Handelssigill
 
-De fyra PNG-filerna:
+De fyra PNG-filerna i `assets/icons/trade-seals/` är godkända produktionsassets och ska ligga kvar i Git.
 
-```text
-assets/icons/trade-seals/blue-trade-seal.png
-assets/icons/trade-seals/red-trade-seal.png
-assets/icons/trade-seals/green-trade-seal.png
-assets/icons/trade-seals/purple-trade-seal.png
-```
+`assets/icons/source/trade-seals-generated-sheet-v1.1.png` behålls som ursprungligt AI-genererat källark. Versionsdelen i det filnamnet avser själva grafikasseten, inte projektets releaseversion.
 
-är godkända produktionsassets och ska ligga kvar i Git.
-
-`assets/icons/source/trade-seals-generated-sheet-v1.1.png` behålls som ursprungligt AI-genererat källark.
-
-`scripts/build_trade_seal_icons.py` är ett manuellt asset-verktyg. Det körs **inte** automatiskt av preview- eller releasebyggen eftersom normala byggen inte ska skriva över godkända assets.
+`scripts/build_trade_seal_icons.py` är ett manuellt asset-verktyg och körs inte automatiskt av preview- eller releasebyggen.
 
 ## GitHub Actions
 
-- **Validate** kontrollerar källor, regler, versioner och de godkända PNG-assetsen.
-- **Build Print Preview** bygger samtliga printfiler från incheckade källor/assets och laddar upp dem som artifact.
-- **Release Print-and-Play** bygger från den taggade revisionen och publicerar PDF-filer plus en print-and-play-zip på GitHub Release.
+- **Validate** kontrollerar källor, regler, versionsfil, sammanhang och godkända PNG-assets.
+- **Build Print Preview** bygger samtliga printfiler med stabila, versionsfria filnamn.
+- **Release Print-and-Play** läser versionen från `VERSION`, kontrollerar Git-taggen och publicerar printfiler samt en versionsmärkt print-and-play-zip.
 
 ## Lokalt
 

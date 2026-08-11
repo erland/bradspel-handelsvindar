@@ -26,7 +26,7 @@ for name,p in ports.items():
         x,y=q["x_mm"],q["y_mm"]
         if bx[0]-4 < x < bx[2]+4 and bx[1]-4 < y < bx[3]+4:
             warnings.append({"type":"label-port","label":name,"port":other})
-report={"version":str(layout["version"]),"warnings":warnings,"count":len(warnings)}
+report={"version":(ROOT/"VERSION").read_text(encoding="utf-8").strip(),"warnings":warnings,"count":len(warnings)}
 out=ROOT/"output"/"layout-collision-report.json"
 out.parent.mkdir(exist_ok=True)
 out.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
