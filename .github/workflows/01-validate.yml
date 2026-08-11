@@ -1,0 +1,55 @@
+name: Validate
+
+on:
+  pull_request:
+    paths:
+      - "assets/**"
+      - "data/**"
+      - "docs/**"
+      - "schemas/**"
+      - "scripts/**"
+      - "templates/**"
+      - "README.md"
+      - "PROJECT_STATUS.md"
+      - "CHANGELOG.md"
+      - "requirements-*.txt"
+      - ".github/workflows/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "assets/**"
+      - "data/**"
+      - "docs/**"
+      - "schemas/**"
+      - "scripts/**"
+      - "templates/**"
+      - "README.md"
+      - "PROJECT_STATUS.md"
+      - "CHANGELOG.md"
+      - "requirements-*.txt"
+      - ".github/workflows/**"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-validation.txt
+
+      - name: Install validation dependencies
+        run: python -m pip install --disable-pip-version-check -r requirements-validation.txt
+
+      - name: Validate Handelsvindar
+        run: python scripts/validate_project.py .
