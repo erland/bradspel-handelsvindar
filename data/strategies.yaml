@@ -1,5 +1,5 @@
 strategic_simulation:
-  version: '2.0'
+  version: '2.1'
   seed: 10101
   games_per_matchup: 120
   player_counts:

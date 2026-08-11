@@ -1,7 +1,7 @@
 game:
   title: Handelsvindar
-  version: '2.0'
-  status: v2.0 nybörjarvänlig blindtestrelease
+  version: '2.1'
+  status: blindtestredo release med GitHub Actions CI och print-publicering
   players:
     min: 2
     max: 4

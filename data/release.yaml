@@ -1,0 +1,37 @@
+version: '2.1'
+project: Handelsvindar
+preview_artifact_name: handelsvindar-print-preview
+release_package_basename: handelsvindar-print-and-play
+printables:
+- id: board_standard
+  label: Spelbräde standard
+  source: output/pdf/board/board-a4-standard-v2.1.pdf
+  release_name: handelsvindar-board-standard.pdf
+- id: board_ink_friendly
+  label: Spelbräde ink-friendly
+  source: output/pdf/board/board-a4-ink-friendly-v2.1.pdf
+  release_name: handelsvindar-board-ink-friendly.pdf
+- id: trade_seal_cards
+  label: Handelssigillkort
+  source: output/pdf/cards/route-cards-compact-4x4-v2.1.pdf
+  release_name: handelsvindar-handelssigillkort.pdf
+- id: delivery_cards
+  label: Leveranskort
+  source: output/pdf/cards/delivery-cards-compact-4x4-v2.1.pdf
+  release_name: handelsvindar-leveranskort.pdf
+- id: markers
+  label: Markörark
+  source: output/pdf/components/markers-a4-v2.1.pdf
+  release_name: handelsvindar-markorer.pdf
+- id: quick_reference_a6
+  label: Snabbreferens A6
+  source: output/pdf/player-aids/quick-reference-a6-v2.1.pdf
+  release_name: handelsvindar-snabbreferens-a6.pdf
+- id: quick_reference_a4_4up
+  label: Snabbreferens A4 4-up
+  source: output/pdf/player-aids/quick-reference-a4-4up-v2.1.pdf
+  release_name: handelsvindar-snabbreferens-a4-4up.pdf
+- id: rulebook
+  label: Regelbok
+  source: output/pdf/docs/rulebook-v2.1.pdf
+  release_name: handelsvindar-regelbok.pdf
